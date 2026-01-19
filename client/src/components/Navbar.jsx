@@ -9,7 +9,7 @@ const Navbar = () => {
         <img onClick={()=>{navigate("/")}}src={assets.logo} alt="logo" className='w-32 sm:w-44'/>  
         <button onClick={()=>{navigate("/admin")}} className='flex itme-center gap-2 rounded-full test-sm cursor-pointer bg-primary text-white px-10 py-2.5' >
             Login
-            <img src={assets.arrow} alt="Login" className='w-3' />    
+            {/* <img src={assets.arrow} alt="Login" className='w-3' />     */}
         </button>     
     </div>
   )

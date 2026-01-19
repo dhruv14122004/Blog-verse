@@ -4,8 +4,9 @@ import { useState } from 'react'
 import { assets, blog_data, comments_data } from '../assets/assets'
 import { useEffect } from 'react'
 import Footer from '../components/Footer.jsx'
-
 import Moment from 'moment'
+import Loader from '../components/Loader.jsx'
+
 const Blog = () => {
   const { id } = useParams();
   const [data, setData] = useState(null);
@@ -111,7 +112,7 @@ const Blog = () => {
       </div>
       <Footer />
     </div>
-  ) : <div>Loading...</div>
+  ) : <Loader/>
 }
 
 export default Blog
