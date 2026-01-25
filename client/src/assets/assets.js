@@ -77,7 +77,7 @@ export const blog_data = [
     {
         "_id": "6805ef08d8f584af5da78d39",
         "title": "How to create an effective startup roadmap or ideas",
-        "description": "<p>\tCreating an effective <strong>startup roadmap</strong> helps you turn an idea into a structured, actionable plan. It gives clarity on what to build, when to build it, and how to scale. Here's a short and practical guide to help you build your startup roadmap or refine your startup ideas:</p><h2>1. <strong>Start with the Problem, Not the Product</strong></h2><ol><li data-list=\"bullet\"><span class=\"ql-ui\" contenteditable=\"false\"></span>Identify a real, painful problem.</li><li data-list=\"bullet\"><span class=\"ql-ui\" contenteditable=\"false\"></span>Validate that it affects a significant audience.</li><li data-list=\"bullet\"><span class=\"ql-ui\" contenteditable=\"false\"></span>Ask: “Is this a must-have or just nice to have?”</li></ol><p><strong>Tip:</strong> Talk to real users, not just friends or family.</p><h2>2. <strong>Define Your Vision and Mission</strong></h2><ol><li data-list=\"bullet\"><span class=\"ql-ui\" contenteditable=\"false\"></span>Vision: Long-term impact you want to make.</li><li data-list=\"bullet\"><span class=\"ql-ui\" contenteditable=\"false\"></span>Mission: The approach or method to get there.</li></ol><p>This gives your roadmap a clear direction and purpose.</p><h2>3. <strong>Brainstorm and Filter Ideas</strong></h2><ol><li data-list=\"bullet\"><span class=\"ql-ui\" contenteditable=\"false\"></span>List all possible solutions to the problem.</li><li data-list=\"bullet\"><span class=\"ql-ui\" contenteditable=\"false\"></span>Evaluate each based on:</li><li data-list=\"bullet\" class=\"ql-indent-1\"><span class=\"ql-ui\" contenteditable=\"false\"></span>Feasibility</li><li data-list=\"bullet\" class=\"ql-indent-1\"><span class=\"ql-ui\" contenteditable=\"false\"></span>Market demand</li><li data-list=\"bullet\" class=\"ql-indent-1\"><span class=\"ql-ui\" contenteditable=\"false\"></span>Uniqueness</li><li data-list=\"bullet\" class=\"ql-indent-1\"><span class=\"ql-ui\" contenteditable=\"false\"></span>Revenue potential</li></ol><p>Shortlist 1-2 core ideas to pursue initially.</p><h2>4. <strong>Define Your MVP (Minimum Viable Product)</strong></h2><ol><li data-list=\"bullet\"><span class=\"ql-ui\" contenteditable=\"false\"></span>Strip your idea down to the core functionality.</li><li data-list=\"bullet\"><span class=\"ql-ui\" contenteditable=\"false\"></span>Build only what's needed to solve the problem simply.</li><li data-list=\"bullet\"><span class=\"ql-ui\" contenteditable=\"false\"></span>Focus on value, not features.</li></ol><p><strong>Example:</strong> If you're building a job portal, start with user registration and job posting only.</p><h2>5. <strong>Set Milestones (Roadmap Stages)</strong></h2><p>Break your journey into clear phases:</p><ol><li data-list=\"bullet\"><span class=\"ql-ui\" contenteditable=\"false\"></span><strong>Phase 1: Research &amp; Validation</strong></li><li data-list=\"bullet\" class=\"ql-indent-1\"><span class=\"ql-ui\" contenteditable=\"false\"></span>Market research</li><li data-list=\"bullet\" class=\"ql-indent-1\"><span class=\"ql-ui\" contenteditable=\"false\"></span>Competitor analysis</li><li data-list=\"bullet\" class=\"ql-indent-1\"><span class=\"ql-ui\" contenteditable=\"false\"></span>User interviews</li><li data-list=\"bullet\"><span class=\"ql-ui\" contenteditable=\"false\"></span><strong>Phase 2: MVP Development</strong></li><li data-list=\"bullet\" class=\"ql-indent-1\"><span class=\"ql-ui\" contenteditable=\"false\"></span>Build core product</li><li data-list=\"bullet\" class=\"ql-indent-1\"><span class=\"ql-ui\" contenteditable=\"false\"></span>Internal testing</li><li data-list=\"bullet\"><span class=\"ql-ui\" contenteditable=\"false\"></span><strong>Phase 3: Launch &amp; Feedback</strong></li><li data-list=\"bullet\" class=\"ql-indent-1\"><span class=\"ql-ui\" contenteditable=\"false\"></span>Soft launch to early users</li><li data-list=\"bullet\" class=\"ql-indent-1\"><span class=\"ql-ui\" contenteditable=\"false\"></span>Collect data, iterate</li><li data-list=\"bullet\"><span class=\"ql-ui\" contenteditable=\"false\"></span><strong>Phase 4: Growth &amp; Optimization</strong></li><li data-list=\"bullet\" class=\"ql-indent-1\"><span class=\"ql-ui\" contenteditable=\"false\"></span>Marketing</li><li data-list=\"bullet\" class=\"ql-indent-1\"><span class=\"ql-ui\" contenteditable=\"false\"></span>Add features based on feedback</li><li data-list=\"bullet\" class=\"ql-indent-1\"><span class=\"ql-ui\" contenteditable=\"false\"></span>Improve UI/UX</li><li data-list=\"bullet\"><span class=\"ql-ui\" contenteditable=\"false\"></span><strong>Phase 5: Scale</strong></li><li data-list=\"bullet\" class=\"ql-indent-1\"><span class=\"ql-ui\" contenteditable=\"false\"></span>Monetization</li><li data-list=\"bullet\" class=\"ql-indent-1\"><span class=\"ql-ui\" contenteditable=\"false\"></span>Partnerships</li><li data-list=\"bullet\" class=\"ql-indent-1\"><span class=\"ql-ui\" contenteditable=\"false\"></span>Hiring team</li></ol><h2>6. <strong>Use Tools for Planning and Tracking</strong></h2><ol><li data-list=\"bullet\"><span class=\"ql-ui\" contenteditable=\"false\"></span>Product roadmap tools: Trello, Notion, Jira, ClickUp</li><li data-list=\"bullet\"><span class=\"ql-ui\" contenteditable=\"false\"></span>Timeline tools: Gantt charts, Google Sheets, Miro</li><li data-list=\"bullet\"><span class=\"ql-ui\" contenteditable=\"false\"></span>Analytics: Mixpanel, Hotjar, GA4 for feedback loops</li></ol><h2>7. <strong>Keep It Flexible</strong></h2><p>A roadmap is a guide, not a rulebook. Be ready to pivot based on user feedback, market trends, or technical limitations.</p><h2>8. <strong>Revisit and Refine Regularly</strong></h2><p>Review your progress monthly or quarterly. Adjust priorities based on:</p><ol><li data-list=\"bullet\"><span class=\"ql-ui\" contenteditable=\"false\"></span>User data</li><li data-list=\"bullet\"><span class=\"ql-ui\" contenteditable=\"false\"></span>Business metrics</li><li data-list=\"bullet\"><span class=\"ql-ui\" contenteditable=\"false\"></span>New opportunities</li></ol><p><br></p>",
+        "description": `<p>\tCreating an effective <strong>startup roadmap</strong> helps you turn an idea into a structured, actionable plan. It gives clarity on what to build, when to build it, and how to scale. Here's a short and practical guide to help you build your startup roadmap or refine your startup ideas:</p><h2>1. <strong>Start with the Problem, Not the Product</strong></h2><ol><li data-list=\"bullet\"><span class=\"ql-ui\" contenteditable=\"false\"></span>Identify a real, painful problem.</li><li data-list=\"bullet\"><span class=\"ql-ui\" contenteditable=\"false\"></span>Validate that it affects a significant audience.</li><li data-list=\"bullet\"><span class=\"ql-ui\" contenteditable=\"false\"></span>Ask: “Is this a must-have or just nice to have?”</li></ol><p><strong>Tip:</strong> Talk to real users, not just friends or family.</p><h2>2. <strong>Define Your Vision and Mission</strong></h2><ol><li data-list=\"bullet\"><span class=\"ql-ui\" contenteditable=\"false\"></span>Vision: Long-term impact you want to make.</li><li data-list=\"bullet\"><span class=\"ql-ui\" contenteditable=\"false\"></span>Mission: The approach or method to get there.</li></ol><p>This gives your roadmap a clear direction and purpose.</p><h2>3. <strong>Brainstorm and Filter Ideas</strong></h2><ol><li data-list=\"bullet\"><span class=\"ql-ui\" contenteditable=\"false\"></span>List all possible solutions to the problem.</li><li data-list=\"bullet\"><span class=\"ql-ui\" contenteditable=\"false\"></span>Evaluate each based on:</li><li data-list=\"bullet\" class=\"ql-indent-1\"><span class=\"ql-ui\" contenteditable=\"false\"></span>Feasibility</li><li data-list=\"bullet\" class=\"ql-indent-1\"><span class=\"ql-ui\" contenteditable=\"false\"></span>Market demand</li><li data-list=\"bullet\" class=\"ql-indent-1\"><span class=\"ql-ui\" contenteditable=\"false\"></span>Uniqueness</li><li data-list=\"bullet\" class=\"ql-indent-1\"><span class=\"ql-ui\" contenteditable=\"false\"></span>Revenue potential</li></ol><p>Shortlist 1-2 core ideas to pursue initially.</p><h2>4. <strong>Define Your MVP (Minimum Viable Product)</strong></h2><ol><li data-list=\"bullet\"><span class=\"ql-ui\" contenteditable=\"false\"></span>Strip your idea down to the core functionality.</li><li data-list=\"bullet\"><span class=\"ql-ui\" contenteditable=\"false\"></span>Build only what's needed to solve the problem simply.</li><li data-list=\"bullet\"><span class=\"ql-ui\" contenteditable=\"false\"></span>Focus on value, not features.</li></ol><p><strong>Example:</strong> If you're building a job portal, start with user registration and job posting only.</p><h2>5. <strong>Set Milestones (Roadmap Stages)</strong></h2><p>Break your journey into clear phases:</p><ol><li data-list=\"bullet\"><span class=\"ql-ui\" contenteditable=\"false\"></span><strong>Phase 1: Research &amp; Validation</strong></li><li data-list=\"bullet\" class=\"ql-indent-1\"><span class=\"ql-ui\" contenteditable=\"false\"></span>Market research</li><li data-list=\"bullet\" class=\"ql-indent-1\"><span class=\"ql-ui\" contenteditable=\"false\"></span>Competitor analysis</li><li data-list=\"bullet\" class=\"ql-indent-1\"><span class=\"ql-ui\" contenteditable=\"false\"></span>User interviews</li><li data-list=\"bullet\"><span class=\"ql-ui\" contenteditable=\"false\"></span><strong>Phase 2: MVP Development</strong></li><li data-list=\"bullet\" class=\"ql-indent-1\"><span class=\"ql-ui\" contenteditable=\"false\"></span>Build core product</li><li data-list=\"bullet\" class=\"ql-indent-1\"><span class=\"ql-ui\" contenteditable=\"false\"></span>Internal testing</li><li data-list=\"bullet\"><span class=\"ql-ui\" contenteditable=\"false\"></span><strong>Phase 3: Launch &amp; Feedback</strong></li><li data-list=\"bullet\" class=\"ql-indent-1\"><span class=\"ql-ui\" contenteditable=\"false\"></span>Soft launch to early users</li><li data-list=\"bullet\" class=\"ql-indent-1\"><span class=\"ql-ui\" contenteditable=\"false\"></span>Collect data, iterate</li><li data-list=\"bullet\"><span class=\"ql-ui\" contenteditable=\"false\"></span><strong>Phase 4: Growth &amp; Optimization</strong></li><li data-list=\"bullet\" class=\"ql-indent-1\"><span class=\"ql-ui\" contenteditable=\"false\"></span>Marketing</li><li data-list=\"bullet\" class=\"ql-indent-1\"><span class=\"ql-ui\" contenteditable=\"false\"></span>Add features based on feedback</li><li data-list=\"bullet\" class=\"ql-indent-1\"><span class=\"ql-ui\" contenteditable=\"false\"></span>Improve UI/UX</li><li data-list=\"bullet\"><span class=\"ql-ui\" contenteditable=\"false\"></span><strong>Phase 5: Scale</strong></li><li data-list=\"bullet\" class=\"ql-indent-1\"><span class=\"ql-ui\" contenteditable=\"false\"></span>Monetization</li><li data-list=\"bullet\" class=\"ql-indent-1\"><span class=\"ql-ui\" contenteditable=\"false\"></span>Partnerships</li><li data-list=\"bullet\" class=\"ql-indent-1\"><span class=\"ql-ui\" contenteditable=\"false\"></span>Hiring team</li></ol><h2>6. <strong>Use Tools for Planning and Tracking</strong></h2><ol><li data-list=\"bullet\"><span class=\"ql-ui\" contenteditable=\"false\"></span>Product roadmap tools: Trello, Notion, Jira, ClickUp</li><li data-list=\"bullet\"><span class=\"ql-ui\" contenteditable=\"false\"></span>Timeline tools: Gantt charts, Google Sheets, Miro</li><li data-list=\"bullet\"><span class=\"ql-ui\" contenteditable=\"false\"></span>Analytics: Mixpanel, Hotjar, GA4 for feedback loops</li></ol><h2>7. <strong>Keep It Flexible</strong></h2><p>A roadmap is a guide, not a rulebook. Be ready to pivot based on user feedback, market trends, or technical limitations.</p><h2>8. <strong>Revisit and Refine Regularly</strong></h2><p>Review your progress monthly or quarterly. Adjust priorities based on:</p><ol><li data-list=\"bullet\"><span class=\"ql-ui\" contenteditable=\"false\"></span>User data</li><li data-list=\"bullet\"><span class=\"ql-ui\" contenteditable=\"false\"></span>Business metrics</li><li data-list=\"bullet\"><span class=\"ql-ui\" contenteditable=\"false\"></span>New opportunities</li></ol><p><br></p>`,
         "category": "Startup",
         "image": blog_pic_2,
         "createdAt": "2025-04-21T07:08:56.214Z",
@@ -137,7 +137,7 @@ export const blog_data = [
     {
         "_id": "68062afc8474108ecb7d7944",
         "title": "Taxes on Luxury Houses",
-        "description": "<h2>Luxury Home Taxes: Are They Fair, and What Do They Mean for the Market?</h2><p>\r\n</p><p>Luxury homes. The pinnacle of real estate, often boasting breathtaking views, lavish amenities, and price tags that make your eyes water. But with great wealth comes great responsibility... and in this case, that includes taxes. But are taxes on luxury homes fair? And what impact do they actually have on the overall real estate market? Let's dive in.</p><p>\r\n</p><p><strong>What Exactly are Luxury Home Taxes?</strong></p><p>\r\n</p><p>First, let's clarify what we're talking about. Luxury home taxes aren't a specific, separate tax category in most places. Instead, they refer to the <em>property taxes</em> applied to high-value homes. These taxes are calculated based on the assessed value of the property, and because luxury homes are worth significantly more, they naturally generate higher tax bills.</p><p>\r\n</p><p>In some areas, there might also be:</p><p>\r\n</p><p><br></p><p>\r\n</p><p><strong>The Argument for Higher Taxes on Luxury Homes</strong></p><p>\r\n</p><p>Proponents of higher taxes on luxury homes argue that it's a matter of fairness and social responsibility. Their rationale often includes:</p><p>\r\n</p><p><br></p><p>\r\n</p><p><strong>The Argument Against Higher Taxes on Luxury Homes</strong></p><p>\r\n</p><p>On the other hand, arguments against higher taxes on luxury homes often center around potential negative consequences:</p><p>\r\n</p><p><br></p><p>\r\n</p><p><strong>The Impact on the Real Estate Market</strong></p><p>\r\n</p><p>The impact of luxury home taxes on the real estate market is a complex issue with no easy answers. Here's what we know:</p><p>\r\n</p><p><br></p><p>\r\n</p><p><strong>The Future of Luxury Home Taxes</strong></p><p>\r\n</p><p>The debate over luxury home taxes is likely to continue as governments grapple with funding public services and addressing income inequality. Here are some potential trends to watch:</p><p>\r\n</p><p><br></p><p>\r\n</p><p><strong>Conclusion</strong></p><p>\r\n</p><p>Taxation of luxury homes is a complex issue with strong arguments on both sides. While it can be a valuable source of revenue for public services, it can also have unintended consequences for the real estate market and the overall economy. Finding the right balance requires careful consideration of the specific circumstances of each community and a commitment to fairness, transparency, and economic sustainability.</p><p>\r\n</p><p><strong>What are your thoughts on luxury home taxes? Share your opinions in the comments below!</strong></p><p>\r\n</p>",
+        "description": `<h2>Luxury Home Taxes: Are They Fair, and What Do They Mean for the Market?</h2><p>\r\n</p><p>Luxury homes. The pinnacle of real estate, often boasting breathtaking views, lavish amenities, and price tags that make your eyes water. But with great wealth comes great responsibility... and in this case, that includes taxes. But are taxes on luxury homes fair? And what impact do they actually have on the overall real estate market? Let's dive in.</p><p>\r\n</p><p><strong>What Exactly are Luxury Home Taxes?</strong></p><p>\r\n</p><p>First, let's clarify what we're talking about. Luxury home taxes aren't a specific, separate tax category in most places. Instead, they refer to the <em>property taxes</em> applied to high-value homes. These taxes are calculated based on the assessed value of the property, and because luxury homes are worth significantly more, they naturally generate higher tax bills.</p><p>\r\n</p><p>In some areas, there might also be:</p><p>\r\n</p><p><br></p><p>\r\n</p><p><strong>The Argument for Higher Taxes on Luxury Homes</strong></p><p>\r\n</p><p>Proponents of higher taxes on luxury homes argue that it's a matter of fairness and social responsibility. Their rationale often includes:</p><p>\r\n</p><p><br></p><p>\r\n</p><p><strong>The Argument Against Higher Taxes on Luxury Homes</strong></p><p>\r\n</p><p>On the other hand, arguments against higher taxes on luxury homes often center around potential negative consequences:</p><p>\r\n</p><p><br></p><p>\r\n</p><p><strong>The Impact on the Real Estate Market</strong></p><p>\r\n</p><p>The impact of luxury home taxes on the real estate market is a complex issue with no easy answers. Here's what we know:</p><p>\r\n</p><p><br></p><p>\r\n</p><p><strong>The Future of Luxury Home Taxes</strong></p><p>\r\n</p><p>The debate over luxury home taxes is likely to continue as governments grapple with funding public services and addressing income inequality. Here are some potential trends to watch:</p><p>\r\n</p><p><br></p><p>\r\n</p><p><strong>Conclusion</strong></p><p>\r\n</p><p>Taxation of luxury homes is a complex issue with strong arguments on both sides. While it can be a valuable source of revenue for public services, it can also have unintended consequences for the real estate market and the overall economy. Finding the right balance requires careful consideration of the specific circumstances of each community and a commitment to fairness, transparency, and economic sustainability.</p><p>\r\n</p><p><strong>What are your thoughts on luxury home taxes? Share your opinions in the comments below!</strong></p><p>\r\n</p>`,
         "category": "Finance",
         "image": blog_pic_7,
         "createdAt": "2025-04-21T11:24:44.773Z",
@@ -173,7 +173,7 @@ export const blog_data = [
     {
         "_id": "6810a6a2ed57ecc68a99abb3",
         "title": "AI best practices in healthcare",
-        "description": "<h2>AI Best Practices in Healthcare: Navigating the Future Responsibly</h2><p>\n</p><p>Artificial Intelligence (AI) is rapidly transforming healthcare, promising to revolutionize everything from diagnosis and treatment to patient care and operational efficiency. But with great power comes great responsibility. To harness the full potential of AI in healthcare while mitigating risks, we need to adopt a set of best practices that prioritize patient safety, ethical considerations, and responsible innovation.</p><p>\n</p><p>This blog post explores key AI best practices in healthcare, offering a roadmap for organizations looking to integrate AI solutions effectively and ethically.</p><p>\n</p><p><strong>1. Prioritize Patient Safety and Well-being Above All Else:</strong></p><p>\n</p><p>This is the golden rule of AI in healthcare. Any AI application must be rigorously tested and validated to ensure it enhances, not hinders, patient care.</p><p>\n</p><p>\n</p><p><strong>2. Embrace Transparency and Explainability (XAI):</strong></p><p>\n</p><p>\"Black box\" AI can erode trust and make it difficult to understand how decisions are made. Strive for transparency and explainability in your AI solutions.</p><p>\n</p><p>\n</p><p><strong>3. Address Bias and Ensure Fairness:</strong></p><p>\n</p><p>AI models are trained on data, and if that data reflects existing biases in the healthcare system, the AI will perpetuate and potentially amplify those biases.</p><p>\n</p><p>\n</p><p><strong>4. Secure Patient Data and Protect Privacy:</strong></p><p>\n</p><p>Data security and patient privacy are paramount. AI systems must comply with all applicable regulations and protect sensitive patient information.</p><p>\n</p><p>\n</p><p><strong>5. Foster Collaboration and Continuous Learning:</strong></p><p>\n</p><p>AI development in healthcare is a collaborative effort.  Break down silos and encourage knowledge sharing among stakeholders.</p><p>\n\n</p><p><strong>6. Define Clear Roles and Responsibilities:</strong></p><p>\n</p><p>Clearly define the roles and responsibilities of each stakeholder involved in AI development and deployment.</p><p>\n</p><p><br></p><p>\n</p><p><strong>Conclusion: Embracing a Future of Responsible AI in Healthcare</strong></p><p>\n</p><p>AI holds immense potential to transform healthcare for the better. By embracing these best practices, healthcare organizations can navigate the complexities of AI integration responsibly, ensuring patient safety, ethical considerations, and data privacy are at the forefront.  As AI continues to evolve, a commitment to continuous learning and adaptation will be crucial to unlocking its full potential and building a future where AI empowers healthcare professionals to deliver the best possible care to patients.</p><p>\n</p><p><strong>What are your thoughts? What other best practices do you think are essential for AI in healthcare? Share your insights in the comments below!</strong></p><p>\n</p>",
+        "description": `<h2>AI Best Practices in Healthcare: Navigating the Future Responsibly</h2><p>\n</p><p>Artificial Intelligence (AI) is rapidly transforming healthcare, promising to revolutionize everything from diagnosis and treatment to patient care and operational efficiency. But with great power comes great responsibility. To harness the full potential of AI in healthcare while mitigating risks, we need to adopt a set of best practices that prioritize patient safety, ethical considerations, and responsible innovation.</p><p>\n</p><p>This blog post explores key AI best practices in healthcare, offering a roadmap for organizations looking to integrate AI solutions effectively and ethically.</p><p>\n</p><p><strong>1. Prioritize Patient Safety and Well-being Above All Else:</strong></p><p>\n</p><p>This is the golden rule of AI in healthcare. Any AI application must be rigorously tested and validated to ensure it enhances, not hinders, patient care.</p><p>\n</p><p>\n</p><p><strong>2. Embrace Transparency and Explainability (XAI):</strong></p><p>\n</p><p>"Black box" AI can erode trust and make it difficult to understand how decisions are made. Strive for transparency and explainability in your AI solutions.</p><p>\n</p><p>\n</p><p><strong>3. Address Bias and Ensure Fairness:</strong></p><p>\n</p><p>AI models are trained on data, and if that data reflects existing biases in the healthcare system, the AI will perpetuate and potentially amplify those biases.</p><p>\n</p><p>\n</p><p><strong>4. Secure Patient Data and Protect Privacy:</strong></p><p>\n</p><p>Data security and patient privacy are paramount. AI systems must comply with all applicable regulations and protect sensitive patient information.</p><p>\n</p><p>\n</p><p><strong>5. Foster Collaboration and Continuous Learning:</strong></p><p>\n</p><p>AI development in healthcare is a collaborative effort.  Break down silos and encourage knowledge sharing among stakeholders.</p><p>\n\n</p><p><strong>6. Define Clear Roles and Responsibilities:</strong></p><p>\n</p><p>Clearly define the roles and responsibilities of each stakeholder involved in AI development and deployment.</p><p>\n</p><p><br></p><p>\n</p><p><strong>Conclusion: Embracing a Future of Responsible AI in Healthcare</strong></p><p>\n</p><p>AI holds immense potential to transform healthcare for the better. By embracing these best practices, healthcare organizations can navigate the complexities of AI integration responsibly, ensuring patient safety, ethical considerations, and data privacy are at the forefront.  As AI continues to evolve, a commitment to continuous learning and adaptation will be crucial to unlocking its full potential and building a future where AI empowers healthcare professionals to deliver the best possible care to patients.</p><p>\n</p><p><strong>What are your thoughts? What other best practices do you think are essential for AI in healthcare? Share your insights in the comments below!</strong></p><p>\n</p>`,
         "category": "Lifestyle",
         "image": blog_pic_10,
         "isPublished": true,
@@ -185,57 +185,57 @@ export const blog_data = [
 ]
 
 export const comments_data = [
-        {
-            "_id": "6811ed9e7836a82ba747cb25",
-            "blog": blog_data[0],
-            "name": "Michael Scott",
-            "content": "This is my new comment",
-            "isApproved": false,
-            "createdAt": "2025-04-30T09:30:06.918Z",
-            "updatedAt": "2025-04-30T09:30:06.918Z",
-            "__v": 0
-        },
-        {
-            "_id": "6810a752fbb942aa7cbf4adb",
-            "blog": blog_data[1],
-            "name": "John Doe",
-            "content": "This is a nice blog",
-            "isApproved": false,
-            "createdAt": "2025-04-29T10:17:54.832Z",
-            "updatedAt": "2025-04-29T10:17:54.832Z",
-            "__v": 0
-        },
-        {
-            "_id": "680779aebef75c08f8b4898f",
-            "blog": blog_data[2],
-            "name": "Jack London",
-            "content": "Hi this blog is must to read",
-            "isApproved": true,
-            "createdAt": "2025-04-22T11:12:46.547Z",
-            "updatedAt": "2025-04-22T11:13:10.015Z",
-            "__v": 0
-        },
-        {
-            "_id": "680770aeb2897e5c28bf9b26",
-            "blog": blog_data[3],
-            "name": "Sam Smith",
-            "content": "This is the best blog, everybody should read it",
-            "isApproved": false,
-            "createdAt": "2025-04-22T10:34:22.020Z",
-            "updatedAt": "2025-04-22T10:34:22.020Z",
-            "__v": 0
-        },
-        {
-            "_id": "68076468e32055c94a696cf5",
-            "blog": blog_data[4],
-            "name": "Peter Lawrence",
-            "content": "Honestly, I did not expect this to work, but it totally did. Saved my project!",
-            "isApproved": true,
-            "createdAt": "2025-04-22T09:42:00.444Z",
-            "updatedAt": "2025-04-22T10:24:55.626Z",
-            "__v": 0
-        }
-    ]
+    {
+        "_id": "6811ed9e7836a82ba747cb25",
+        "blog": blog_data[0],
+        "name": "Michael Scott",
+        "content": "This is my new comment",
+        "isApproved": false,
+        "createdAt": "2025-04-30T09:30:06.918Z",
+        "updatedAt": "2025-04-30T09:30:06.918Z",
+        "__v": 0
+    },
+    {
+        "_id": "6810a752fbb942aa7cbf4adb",
+        "blog": blog_data[1],
+        "name": "John Doe",
+        "content": "This is a nice blog",
+        "isApproved": false,
+        "createdAt": "2025-04-29T10:17:54.832Z",
+        "updatedAt": "2025-04-29T10:17:54.832Z",
+        "__v": 0
+    },
+    {
+        "_id": "680779aebef75c08f8b4898f",
+        "blog": blog_data[2],
+        "name": "Jack London",
+        "content": "Hi this blog is must to read",
+        "isApproved": true,
+        "createdAt": "2025-04-22T11:12:46.547Z",
+        "updatedAt": "2025-04-22T11:13:10.015Z",
+        "__v": 0
+    },
+    {
+        "_id": "680770aeb2897e5c28bf9b26",
+        "blog": blog_data[3],
+        "name": "Sam Smith",
+        "content": "This is the best blog, everybody should read it",
+        "isApproved": false,
+        "createdAt": "2025-04-22T10:34:22.020Z",
+        "updatedAt": "2025-04-22T10:34:22.020Z",
+        "__v": 0
+    },
+    {
+        "_id": "68076468e32055c94a696cf5",
+        "blog": blog_data[4],
+        "name": "Peter Lawrence",
+        "content": "Honestly, I did not expect this to work, but it totally did. Saved my project!",
+        "isApproved": true,
+        "createdAt": "2025-04-22T09:42:00.444Z",
+        "updatedAt": "2025-04-22T10:24:55.626Z",
+        "__v": 0
+    }
+]
 
 export const dashboard_data = {
     "blogs": 10,
@@ -245,12 +245,12 @@ export const dashboard_data = {
 }
 
 export const footer_data = [
-      {
-          title: "Quick Links",
-          links: ["Home", "Contact Us", "FAQs"]
-      },
-      {
-          title: "Follow Us",
-          links: ["Instagram", "Twitter", "Facebook", "YouTube"]
-      }
-  ];
+    {
+        title: "Quick Links",
+        links: ["Home", "Contact Us", "FAQs"]
+    },
+    {
+        title: "Follow Us",
+        links: ["Instagram", "Twitter", "Facebook", "YouTube"]
+    }
+];

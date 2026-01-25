@@ -1,22 +1,55 @@
-import Navbar from '../components/Navbar'
-import { useParams } from 'react-router-dom'
-import { useState } from 'react'
-import { assets, blog_data, comments_data } from '../assets/assets'
-import { useEffect } from 'react'
-import Footer from '../components/Footer.jsx'
-import Moment from 'moment'
-import Loader from '../components/Loader.jsx'
+import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { addXP } from '../features/user/userSlice';
+import { toggleFocusMode } from '../features/ui/uiSlice';
+import { blog_data, comments_data } from '../assets/assets';
+import SpiderNavbar from '../components/navigation/SpiderNavbar';
+import ComicCover from '../components/blog/ComicCover';
+import { motion, AnimatePresence } from 'framer-motion';
+import Moment from 'moment';
+
+const PostHeader = ({ date, author, category, isFocusMode, onToggleFocus }) => (
+  <div className="flex flex-wrap items-center gap-4 my-8 font-mono border-b-2 border-dashed border-gray-700 pb-4 text-[var(--color-web-white)] justify-between">
+    <div className="flex items-center gap-4">
+      <span className="bg-[var(--color-electric-blue)] text-black px-3 py-1 text-sm font-bold -rotate-1 shadow-[2px_2px_0px_red]">
+        {category || 'TECH'}
+      </span>
+      <span className="text-zinc-400 text-sm hidden sm:inline">
+            // {Moment(date).format('MMM DD, YYYY').toUpperCase()}
+      </span>
+      <span className="text-[var(--color-neon-red)] font-bold text-sm hidden sm:inline">
+        AUTH: {author ? author.toUpperCase() : 'UNKNOWN'}
+      </span>
+    </div>
+
+    <button
+      onClick={onToggleFocus}
+      className={`px-3 py-1 font-bold text-xs uppercase tracking-widest border transition-all ${isFocusMode ? 'bg-white text-black border-white' : 'border-zinc-600 text-zinc-400 hover:text-white'}`}
+    >
+      {isFocusMode ? 'EXIT_FOCUS' : 'READING_MODE'}
+    </button>
+  </div>
+);
 
 const Blog = () => {
   const { id } = useParams();
+  const dispatch = useDispatch();
+  const isFocusMode = useSelector((state) => state.ui.isFocusMode);
+
   const [data, setData] = useState(null);
   const [comments, setComments] = useState([]);
-  const [author, setAuthor] = useState('');
+
+  // Comment Form State
+  const [authorName, setAuthorName] = useState('');
   const [commentText, setCommentText] = useState('');
 
   const fetchBlogData = async () => {
     const data = blog_data.find((blog) => blog._id === id);
-    setData(data);
+    if (data) {
+      setData(data);
+      dispatch(addXP(5));
+    }
   }
 
   const fetchComments = async () => {
@@ -30,89 +63,114 @@ const Blog = () => {
 
   const addComment = (e) => {
     e.preventDefault();
-    const name = author.trim();
-    const content = commentText.trim();
-    if (!name || !content) return;
+    if (!authorName.trim() || !commentText.trim()) return;
+
     const newComment = {
-      name,
-      content,
-      createdAt: new Date().toISOString(),
+      name: authorName,
+      content: commentText,
+      createdAt: new Date().toISOString()
     };
-    setComments((prev) => [newComment, ...prev]);
-    setAuthor('');
+    setComments(prev => [newComment, ...prev]);
+    setAuthorName('');
     setCommentText('');
+    dispatch(addXP(2)); // XP for commenting
   };
 
-  return data ? (
-    <div className='min-h-screen relative'>
-      {/* <img src={assets.gradientBackground} alt="" className='absolute top-50 -z-1 opacity-50'/> */}
-      <Navbar />
-      <div className='text-center mt-20 bg-white rounded-md text-gray-600'>
-        <p className='text-primary py-4 font-medium'>Published On : {Moment(data.createdAt).format('MMMM Do YYYY')}</p>
-        <h1 className='text-3xl font-semibold sm:text-6xl max-w-4xl mx-auto text-gray-700'>{data.title}</h1>
-        <h2 className='my-4 text-xl max-w-4xl mx-auto text-gray-600'>{data.subTitle}</h2>
-        <p className='inline-block py-1 px-4 text-primary rounded-full mb-4 border border-primary bg-primary/10 font-medium'>Dhruv Sharma</p>
-      </div>
-      <div className='mx-5 max-w-5xl md:mx-auto my-10 mt-6'>
-        <img src={data.image} alt={data.title} className="max-w-4xl mx-auto rounded-4xl" />
-        <div className='rich-text max-w-3xl mx-auto' dangerouslySetInnerHTML={{ __html: data.description }}>
-        </div>
-        {/* comments Section */}
+  if (!data) return <div className="min-h-screen bg-[#0b0b0f] text-white flex items-center justify-center font-mono">ESTABLISHING CONNECTION...</div>;
 
-        <div className='mt-14 mb-10 max-w-3xl mx-auto'>
-          <h2 className='text-2xl font-semibold mb-6 text-gray-700'>Comments ({comments.length})</h2>
-          {comments.map((comment, index) => (
-            <div key={index} className='bg-primary/5 border border-gray-300 rounded-lg p-4 mb-6 text-gray-700'>
-              <div className='flex items-start gap-3'>
-                <img src={assets.user_icon} alt={comment.name} className='w-10 h-10 rounded-full object-cover shrink-0' />
-                <div className='flex-1 min-w-0'>
-                  <div className='flex items-baseline justify-between'>
-                    <p className='font-medium text-gray-800'>{comment.name}</p>
-                    <span className='text-xs text-gray-500'>{Moment(comment.createdAt).fromNow()}</span>
-                  </div>
-                  <p className='text-sm text-gray-700 mt-1 break-words'>{comment.content}</p>
+  return (
+    <div className={`min-h-screen relative transition-colors duration-500 bg-black text-[var(--color-web-white)] font-sans`}>
+      <SpiderNavbar />
+
+      {/* Dynamic Layout Container */}
+      <div className={`mx-auto px-4 pt-32 pb-8 transition-all duration-500 ${isFocusMode ? 'max-w-4xl' : 'max-w-6xl'}`}>
+
+        {/* LEFT COLUMN: Content */}
+        <main>
+          {/* Show/Hide Hero Image based on focus mode */}
+          {!isFocusMode && (
+            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
+              <ComicCover title={data.title} image={data.image} />
+            </motion.div>
+          )}
+
+          {/* Header with Title in Focus Mode since Cover is hidden */}
+          {isFocusMode && (
+            <h1 className="text-5xl md:text-7xl font-black mb-12 text-white tracking-tighter">{data.title}</h1>
+          )}
+
+          <PostHeader
+            date={data.createdAt}
+            author="Dhruv"
+            category={data.category}
+            isFocusMode={isFocusMode}
+            onToggleFocus={() => dispatch(toggleFocusMode())}
+          />
+
+          <article className={`prose prose-invert prose-xl max-w-none 
+            prose-headings:font-black prose-headings:text-white prose-headings:tracking-tight prose-headings:mb-6 prose-headings:mt-12
+            prose-p:text-zinc-300 prose-p:leading-relaxed prose-p:text-xl prose-p:mb-6
+            prose-strong:text-white prose-strong:font-black
+            prose-li:text-zinc-300 prose-li:marker:text-[var(--color-neon-red)]
+            prose-a:text-[var(--color-electric-blue)] prose-a:no-underline prose-a:border-b-2 prose-a:border-[var(--color-neon-red)] hover:prose-a:bg-[var(--color-neon-red)] hover:prose-a:text-white transition-all
+            prose-blockquote:border-l-4 prose-blockquote:border-[var(--color-neon-red)] prose-blockquote:bg-zinc-900/50 prose-blockquote:p-6 prose-blockquote:italic prose-blockquote:text-zinc-200
+            prose-pre:bg-[#111] prose-pre:border prose-pre:border-zinc-800
+            prose-img:rounded-xl prose-img:shadow-2xl prose-img:border prose-img:border-zinc-800
+            transition-opacity ${isFocusMode ? 'opacity-90' : 'opacity-100'}`}>
+            <div dangerouslySetInnerHTML={{ __html: data.description }}></div>
+          </article>
+
+          {/* Comments */}
+          {!isFocusMode && (
+            <div className='mt-20 border-t-4 border-zinc-900 pt-10'>
+              <h2 className='text-4xl font-black mb-8 italic'>COMMENTS_LOG <span className='text-[var(--color-neon-red)] text-2xl'>({comments.length})</span></h2>
+
+              {/* Comment Form */}
+              <form onSubmit={addComment} className="mb-12 bg-zinc-900/50 p-6 border border-zinc-800">
+                <div className="grid md:grid-cols-2 gap-4 mb-4">
+                  <input
+                    type="text"
+                    placeholder="CODENAME"
+                    value={authorName}
+                    onChange={e => setAuthorName(e.target.value)}
+                    className="bg-black border border-zinc-700 p-3 outline-none focus:border-[var(--color-electric-blue)] text-white font-mono"
+                  />
                 </div>
+                <textarea
+                  placeholder="INPUT_TRANSMISSION..."
+                  value={commentText}
+                  onChange={e => setCommentText(e.target.value)}
+                  className="w-full bg-black border border-zinc-700 p-3 h-32 outline-none focus:border-[var(--color-electric-blue)] text-white font-mono mb-4 resize-none"
+                ></textarea>
+                <button type="submit" className="bg-[var(--color-electric-blue)] text-white px-8 py-3 font-bold hover:bg-blue-600 transition-colors skew-x-[-10deg]">
+                  TRANSMIT
+                </button>
+              </form>
+
+              <div className="space-y-6">
+                {comments.map((comment, index) => (
+                  <motion.div
+                    key={index}
+                    initial={{ x: -20, opacity: 0 }}
+                    whileInView={{ x: 0, opacity: 1 }}
+                    className='bg-zinc-900/30 border-l-2 border-[var(--color-glitch-purple)] p-6'
+                  >
+                    <div className='flex justify-between items-baseline mb-2 font-mono text-xs text-zinc-500'>
+                      <span className='text-[var(--color-neon-red)] font-bold text-sm'>{comment.name.toUpperCase()}</span>
+                      <span>{Moment(comment.createdAt).fromNow().toUpperCase()}</span>
+                    </div>
+                    <p className='text-zinc-300'>{comment.content}</p>
+                  </motion.div>
+                ))}
               </div>
             </div>
-          ))}
-        </div>
-        {/* Add Comment Section */}
-        <div className='max-w-3xl mx-auto mb-20'>
-          <h2 className='text-2xl font-semibold mb-6 text-gray-700'>Add a Comment</h2>
-          <form onSubmit={addComment} className='flex flex-col gap-4'>
-            <input
-              type="text"
-              placeholder='Your Name'
-              value={author}
-              onChange={(e) => setAuthor(e.target.value)}
-              className='w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-primary/50'
-              required
-            />
-            <textarea
-              placeholder='Your Comment'
-              value={commentText}
-              onChange={(e) => setCommentText(e.target.value)}
-              className='w-full border border-gray-300 rounded-lg px-4 py-2 h-24 resize-none focus:outline-none focus:ring-2 focus:ring-primary/50'
-              required
-            ></textarea>
-            <button type='submit' className='bg-primary text-white px-6 py-2 rounded-lg hover:bg-primary/90 transition'>
-              Submit Comment
-            </button>
-          </form>
-        </div>
-        {/* Share Buttons */}
-        <div className='my-24 max-w-3xl mx-auto'>
-          <p className='font-semibold my-4'>Share the article on social media</p>
-          <div className='flex items-center gap-6'>
-            <img src={assets.facebook_icon} alt="Facebook" width={50} />
-            <img src={assets.twitter_icon} alt="Twitter" width={50} />
-            <img src={assets.googleplus_icon} alt="Google Plus" width={50} />
-          </div>
-        </div>
+          )}
+        </main>
+
+
       </div>
-      <Footer />
     </div>
-  ) : <Loader/>
+  )
 }
 
-export default Blog
+export default Blog;
