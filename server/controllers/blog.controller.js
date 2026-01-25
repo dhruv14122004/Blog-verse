@@ -1,6 +1,8 @@
 import fs from "fs";
 import imagekit from "../configs/imagekit.js";
 import BLOG from "../models/blog.model.js";
+import COMMENT from "../models/comment.model.js";
+import auth from "../middlewares/auth.js";
 
 export const createBlog = async (req, res) => {
     try {
@@ -123,3 +125,82 @@ export const togglePublished = async (req, res) => {
         })
     }
 }
+
+export const createComment = async(req, res)=>{
+    try {
+        const {blogId} = req.params
+        const {content, authorName} = req.body
+        const blog = await BLOG.findById(blogId)
+        if(!blog){
+            return res.status(404).json({
+                success : false,
+                message : "Blog not found"
+            })
+        }
+        const comment = new COMMENT({
+            content,
+            blogId,
+            authorName : authorName
+        })
+        await comment.save()
+        blog.comments.unshift(comment._id)
+        await blog.save()
+        res.status(201).json({
+            success : true,
+            message : "Comment created successfully"
+        })
+    } catch (error) {
+        res.status(500).json({
+            success : false,
+            message : error.message
+        })
+    }
+}
+
+export const deleteComment = async(req, res)=>{
+    try {
+        const {commentId} = req.params
+        await COMMENT.findByIdAndDelete(commentId)
+        await BLOG.updateOne({
+            $pull : {
+                comments : commentId
+            }  
+        })
+        res.status(200).json({
+            success : true,
+            message : "Comment deleted successfully"
+        })
+    } catch (error) {
+        res.status(500).json({
+            success : false,
+            message : error.message
+        })
+    }
+}
+
+
+export const toggleCommentApproval = async(req, res)=>{
+    try {
+        const {commentId} = req.params
+        const comment = await COMMENT.findById(commentId)
+        if(!comment){
+            return res.status(404).json({
+                success : false,
+                message : "Comment not found"
+            })
+        }
+        comment.isApproved = !comment.isApproved
+        await comment.save()
+        res.status(200).json({
+            success : true,
+            message : "Comment approval status updated successfully"
+        })
+    } catch (error) {
+        res.status(500).json({
+            success : false,
+            message : error.message
+        })
+    }
+}
+
+    

@@ -28,7 +28,13 @@ const blogSchema = new mongoose.Schema({
     isPublished: {
         type: Boolean,
         default: true
-    }
+    },
+    comments : [
+        {
+            type : mongoose.Schema.Types.ObjectId,
+            ref : "comment"
+        }
+    ]   
 }, {
     timestamps: true
 })
