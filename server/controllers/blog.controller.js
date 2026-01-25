@@ -56,7 +56,7 @@ export const createBlog = async (req, res) => {
 
 export const getAllBlogs = async (req, res) => {
     try {
-        const blogs = await BLOG.find({ isPublished: true })
+        const blogs = await BLOG.find({ isPublished: true }).sort({ createdAt: -1 })
         res.status(200).json({ success: true, blogs })
     } catch (error) {
         res.status(500).json({ success: false, message: error.message })
@@ -89,6 +89,7 @@ export const deleteBlogById = async (req, res) => {
     try {
         const { id } = req.params
         await BLOG.findByIdAndDelete(id)
+        await COMMENT.deleteMany({ blogId: id })
         res.status(200).json({
             success: true,
             message: "Blog deleted successfully"
@@ -126,81 +127,59 @@ export const togglePublished = async (req, res) => {
     }
 }
 
-export const createComment = async(req, res)=>{
+export const createComment = async (req, res) => {
     try {
-        const {blogId} = req.params
-        const {content, authorName} = req.body
+        const { blogId } = req.params
+        const { content, authorName } = req.body
         const blog = await BLOG.findById(blogId)
-        if(!blog){
+        if (!blog) {
             return res.status(404).json({
-                success : false,
-                message : "Blog not found"
+                success: false,
+                message: "Blog not found"
             })
         }
         const comment = new COMMENT({
             content,
             blogId,
-            authorName : authorName
+            authorName: authorName
         })
         await comment.save()
         blog.comments.unshift(comment._id)
         await blog.save()
         res.status(201).json({
-            success : true,
-            message : "Comment created successfully"
+            success: true,
+            message: "Comment created successfully"
         })
     } catch (error) {
         res.status(500).json({
-            success : false,
-            message : error.message
-        })
-    }
-}
-
-export const deleteComment = async(req, res)=>{
-    try {
-        const {commentId} = req.params
-        await COMMENT.findByIdAndDelete(commentId)
-        await BLOG.updateOne({
-            $pull : {
-                comments : commentId
-            }  
-        })
-        res.status(200).json({
-            success : true,
-            message : "Comment deleted successfully"
-        })
-    } catch (error) {
-        res.status(500).json({
-            success : false,
-            message : error.message
+            success: false,
+            message: error.message
         })
     }
 }
 
 
-export const toggleCommentApproval = async(req, res)=>{
+export const getBlogComments = async (req, res) => {
     try {
-        const {commentId} = req.params
-        const comment = await COMMENT.findById(commentId)
-        if(!comment){
+        const { blogId } = req.params
+        const blog = await BLOG.findById(blogId)
+        if (!blog) {
             return res.status(404).json({
-                success : false,
-                message : "Comment not found"
+                success: false,
+                message: "Blog not found"
             })
         }
-        comment.isApproved = !comment.isApproved
-        await comment.save()
+        const comments = await COMMENT.find({ blogId, isApproved: true }).sort({ createdAt: -1 })
         res.status(200).json({
-            success : true,
-            message : "Comment approval status updated successfully"
+            success: true,
+            comments
         })
     } catch (error) {
         res.status(500).json({
-            success : false,
-            message : error.message
+            success: false,
+            message: error.message
         })
     }
 }
 
-    
+
