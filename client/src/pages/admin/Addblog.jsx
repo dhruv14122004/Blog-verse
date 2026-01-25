@@ -62,7 +62,7 @@ const Addblog = () => {
         {/* Main Details */}
         <div className="bg-zinc-900 border border-zinc-800 p-6 shadow-lg space-y-6">
           <div>
-            <label className="block text-xs font-mono font-bold text-zinc-500 uppercase mb-2">ENTRY_TITLE</label>
+            <label className="block text-xs font-mono font-bold text-zinc-500 uppercase mb-2">TITLE</label>
             <div className="relative">
               <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                 <Type className="h-5 w-5 text-zinc-500" />
@@ -72,7 +72,25 @@ const Addblog = () => {
                 onChange={onChangeHandler}
                 value={data.title}
                 type="text"
-                placeholder="ENTER_TITLE_HERE..."
+                placeholder="Start typing..."
+                required
+                className="w-full pl-10 pr-4 py-3 bg-black border border-zinc-800 rounded text-white focus:outline-none focus:border-[var(--color-neon-red)] focus:ring-1 focus:ring-[var(--color-neon-red)] transition-all font-bold text-lg placeholder:text-zinc-700"
+              />
+            </div>
+          </div>
+
+          <div>
+            <label className="block text-xs font-mono font-bold text-zinc-500 uppercase mb-2">SUB-TITLE</label>
+            <div className="relative">
+              <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                <Type className="h-5 w-5 text-zinc-500" />
+              </div>
+              <input
+                name="subtitle"
+                onChange={onChangeHandler}
+                value={data.subtitle}
+                type="text"
+                placeholder="Start typing..."
                 required
                 className="w-full pl-10 pr-4 py-3 bg-black border border-zinc-800 rounded text-white focus:outline-none focus:border-[var(--color-neon-red)] focus:ring-1 focus:ring-[var(--color-neon-red)] transition-all font-bold text-lg placeholder:text-zinc-700"
               />
@@ -130,7 +148,7 @@ const Addblog = () => {
 
         <div className="flex justify-end">
           <button type="submit" className="bg-[var(--color-neon-red)] text-white px-8 py-4 font-black italic tracking-tighter text-xl uppercase skew-x-[-10deg] hover:bg-red-600 transition-all shadow-[4px_4px_0px_white] hover:shadow-none hover:translate-x-[2px] hover:translate-y-[2px]">
-            <span className="skew-x-[10deg] inline-block">TRANSMIT_DATA</span>
+            <span className="skew-x-[10deg] inline-block">Publish</span>
           </button>
         </div>
       </form>
