@@ -63,38 +63,63 @@ export const getAllBlogs = async (req, res) => {
 
 export const getBlogById = async (req, res) => {
     try {
-        const { blogId } = req.parse
-        const blog = await BLOG.find(blogId)
+        const { blogId } = req.params
+        const blog = await BLOG.findById(blogId)
+        if (!blog) {
+            return res.status(404).json({
+                success: false,
+                message: "Blog not found"
+            })
+        }
+        res.status(200).json({
+            success: true,
+            blog
+        })
+    } catch (error) {
+        return res.status(500).json({
+            success: false,
+            message: error.message
+        })
+    }
+}
+
+export const deleteBlogById = async (req, res) => {
+    try {
+        const { id } = req.params
+        await BLOG.findByIdAndDelete(id)
+        res.status(200).json({
+            success: true,
+            message: "Blog deleted successfully"
+        })
+    } catch (error) {
+        res.status(500).json({
+            success: false,
+            message: error.message
+        })
+    }
+}
+
+
+export const togglePublished = async (req, res) => {
+    try {
+        const { id } = req.body
+        const blog = await BLOG.findById(id)
         if (!blog) {
             return res.status(404).json({
                 success: "false",
                 message: "Blog not found"
             })
         }
+        blog.isPublished = !blog.isPublished
+        await blog.save()
         res.status(200).json({
             success: "true",
-            message: blog
-        })
-    } catch (error) {
-        return res.status(500).json({
-            success: "false",
-            message: error.message
-        })
-    }
-}
-
-export const deleteBlogById = async (req,res)=>{
-    try {
-        const {id} = req.body
-        await BLOG.findByIdAndDelete(id)
-        res.status(200).json({
-            success : "true",
-            message : "Blog deleted successfully"
+            message: "Blog published status updated successfully"
         })
     } catch (error) {
         res.status(500).json({
-            success : "false",
-            message : error.message
+            success: "false",
+            message: error.message
         })
     }
 }
