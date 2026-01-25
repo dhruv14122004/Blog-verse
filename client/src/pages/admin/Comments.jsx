@@ -17,73 +17,72 @@ const Comments = () => {
     }, []);
 
     return (
-        <div className="p-6 bg-gray-50 min-h-screen font-sans">
+        <div className="font-sans text-white">
             {/* Header & Filter Section */}
-            <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-4">
+            <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-4 border-b border-zinc-800 pb-6">
                 <div>
-                    <h1 className="text-2xl font-bold text-gray-800 flex items-center gap-2">
-                        <MessageSquare className="text-primary" size={24} />
-                        Comments
+                    <h1 className="text-4xl font-black italic tracking-tighter text-white flex items-center gap-2">
+                        <MessageSquare className="text-[var(--color-electric-blue)]" size={32} />
+                        COMMENTS
                     </h1>
-                    <p className="text-gray-500 text-sm mt-1">Manage and moderate user comments.</p>
                 </div>
 
                 {/* Modern Segmented Control Filter */}
-                <div className="bg-white p-1 rounded-xl border border-gray-200 shadow-sm inline-flex">
+                <div className="bg-black p-1 border border-zinc-800 inline-flex">
                     <button
                         onClick={() => setFilter('Not Approved')}
-                        className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 flex items-center gap-2
+                        className={`px-4 py-2 text-sm font-bold uppercase font-mono transition-all duration-200 flex items-center gap-2 skew-x-[-10deg]
                             ${filter === 'Not Approved'
-                                ? 'bg-orange-50 text-orange-600 ring-1 ring-orange-200 shadow-sm' 
-                                : 'text-gray-500 hover:text-gray-700 hover:bg-gray-50'
+                                ? 'bg-[var(--color-neon-red)] text-white shadow-[2px_2px_0px_white]'
+                                : 'text-zinc-500 hover:text-white hover:bg-zinc-900'
                             }`}
                     >
-                        <Clock size={14} />
-                        Pending
+                        <Clock size={14} className="skew-x-[10deg]" />
+                        <span className="skew-x-[10deg]">PENDING</span>
                     </button>
                     <button
                         onClick={() => setFilter('Approved')}
-                        className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 flex items-center gap-2
+                        className={`px-4 py-2 text-sm font-bold uppercase font-mono transition-all duration-200 flex items-center gap-2 skew-x-[-10deg] ml-2
                             ${filter === 'Approved'
-                                ? 'bg-green-50 text-green-600 ring-1 ring-green-200 shadow-sm'
-                                : 'text-gray-500 hover:text-gray-700 hover:bg-gray-50'
+                                ? 'bg-[var(--color-electric-blue)] text-black shadow-[2px_2px_0px_white]'
+                                : 'text-zinc-500 hover:text-white hover:bg-zinc-900'
                             }`}
                     >
-                        <CheckCircle size={14} />
-                        Approved
+                        <CheckCircle size={14} className="skew-x-[10deg]" />
+                        <span className="skew-x-[10deg]">APPROVED</span>
                     </button>
                 </div>
             </div>
 
             {/* Table Card */}
-            <div className="bg-white border border-gray-100 rounded-2xl shadow-sm overflow-hidden">
+            <div className="bg-zinc-900 border border-zinc-800 shadow-xl overflow-hidden">
                 <div className="overflow-x-auto">
                     <table className="w-full text-left border-collapse">
                         <thead>
-                            <tr className="bg-gray-50/50 border-b border-gray-100 text-gray-500 text-xs uppercase tracking-wider">
-                                <th scope='col' className='px-6 py-4 font-medium'>Blog title & Comments</th>
-                                <th scope='col' className='px-6 py-4 font-medium'>Date</th>
-                                <th scope='col' className='px-6 py-4 font-medium text-right'>Action</th>
+                            <tr className="bg-black border-b border-zinc-800 text-zinc-500 text-xs uppercase font-mono tracking-wider">
+                                <th scope='col' className='px-6 py-4 font-bold'>TRANSMISSION_DATA</th>
+                                <th scope='col' className='px-6 py-4 font-bold'>TIMESTAMP</th>
+                                <th scope='col' className='px-6 py-4 font-bold text-right'>PROTOCOL</th>
                             </tr>
                         </thead>
-                        <tbody className="divide-y divide-gray-100">
+                        <tbody className="divide-y divide-zinc-800">
                             {comments.filter((comment) => {
                                 if (filter === "Approved") return comment.isApproved === true;
                                 return comment.isApproved === false;
                             }).map((comment, index) => (
-                                <CommentTableItem 
-                                    key={comment.id} 
-                                    comment={comment} 
-                                    index={index + 1} 
-                                    fetchComments={fetchComments} 
+                                <CommentTableItem
+                                    key={comment.id}
+                                    comment={comment}
+                                    index={index + 1}
+                                    fetchComments={fetchComments}
                                 />
                             ))}
-                            
+
                             {/* Optional: Empty State if no comments exist for the filter */}
                             {comments.filter(c => filter === "Approved" ? c.isApproved : !c.isApproved).length === 0 && (
                                 <tr>
-                                    <td colSpan="3" className="px-6 py-10 text-center text-gray-400 text-sm">
-                                        No {filter.toLowerCase()} comments found.
+                                    <td colSpan="3" className="px-6 py-12 text-center text-zinc-500 font-mono">
+                                        NO_{filter.toUpperCase().replace(' ', '_')}_MESSAGES_FOUND.
                                     </td>
                                 </tr>
                             )}

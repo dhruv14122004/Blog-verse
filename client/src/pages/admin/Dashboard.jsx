@@ -21,73 +21,78 @@ const Dashboard = () => {
   }, []);
 
   return (
-    <div className="p-6 bg-gray-50 min-h-screen font-sans">
+    <div className="font-sans text-white">
       {/* Header */}
-      <div className="mb-8">
-        <h1 className="text-2xl font-bold text-gray-800">Dashboard Overview</h1>
-        <p className="text-gray-500 text-sm mt-1">Welcome back, here is what's happening with your blog today.</p>
+      <div className="mb-8 border-b border-zinc-800 pb-6">
+        <h1 className="text-4xl font-black italic tracking-tighter text-white mb-2">DASHBOARD</h1>
       </div>
 
       {/* Stats Grid */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
         {/* Total Blogs Card */}
-        <div className="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm flex items-center justify-between hover:shadow-md transition-shadow">
-          <div>
-            <p className="text-sm font-medium text-gray-500 mb-1">Total Blogs</p>
-            <h3 className="text-3xl font-bold text-gray-800">{dashboardData.blogs}</h3>
-          </div>
-          <div className="h-12 w-12 bg-blue-50 rounded-xl flex items-center justify-center text-blue-600">
-            <FileText size={24} />
+        <div className="bg-zinc-900 p-6 border-l-4 border-[var(--color-neon-red)] shadow-lg hover:bg-zinc-800 transition-colors group">
+          <div className="flex justify-between items-start">
+            <div>
+              <p className="text-xs font-mono font-bold text-zinc-500 mb-2 uppercase">TOTAL_ARCHIVES</p>
+              <h3 className="text-4xl font-black text-white group-hover:text-[var(--color-neon-red)] transition-colors">{dashboardData.blogs}</h3>
+            </div>
+            <div className="p-3 bg-black rounded-lg text-[var(--color-neon-red)] border border-zinc-800">
+              <FileText size={24} />
+            </div>
           </div>
         </div>
 
         {/* Comments Card */}
-        <div className="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm flex items-center justify-between hover:shadow-md transition-shadow">
-          <div>
-            <p className="text-sm font-medium text-gray-500 mb-1">Total Comments</p>
-            <h3 className="text-3xl font-bold text-gray-800">{dashboardData.comments}</h3>
-          </div>
-          <div className="h-12 w-12 bg-purple-50 rounded-xl flex items-center justify-center text-purple-600">
-            <MessageCircle size={24} />
+        <div className="bg-zinc-900 p-6 border-l-4 border-[var(--color-electric-blue)] shadow-lg hover:bg-zinc-800 transition-colors group">
+          <div className="flex justify-between items-start">
+            <div>
+              <p className="text-xs font-mono font-bold text-zinc-500 mb-2 uppercase">INTERCEPTIONS</p>
+              <h3 className="text-4xl font-black text-white group-hover:text-[var(--color-electric-blue)] transition-colors">{dashboardData.comments}</h3>
+            </div>
+            <div className="p-3 bg-black rounded-lg text-[var(--color-electric-blue)] border border-zinc-800">
+              <MessageCircle size={24} />
+            </div>
           </div>
         </div>
 
         {/* Drafts Card */}
-        <div className="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm flex items-center justify-between hover:shadow-md transition-shadow">
-          <div>
-            <p className="text-sm font-medium text-gray-500 mb-1">Drafts</p>
-            <h3 className="text-3xl font-bold text-gray-800">{dashboardData.drafts}</h3>
-          </div>
-          <div className="h-12 w-12 bg-orange-50 rounded-xl flex items-center justify-center text-orange-600">
-            <FileEdit size={24} />
+        <div className="bg-zinc-900 p-6 border-l-4 border-yellow-500 shadow-lg hover:bg-zinc-800 transition-colors group">
+          <div className="flex justify-between items-start">
+            <div>
+              <p className="text-xs font-mono font-bold text-zinc-500 mb-2 uppercase">PENDING_FILES</p>
+              <h3 className="text-4xl font-black text-white group-hover:text-yellow-500 transition-colors">{dashboardData.drafts}</h3>
+            </div>
+            <div className="p-3 bg-black rounded-lg text-yellow-500 border border-zinc-800">
+              <FileEdit size={24} />
+            </div>
           </div>
         </div>
       </div>
 
       {/* Recent Blogs Table Section */}
-      <div className="bg-white border border-gray-100 rounded-2xl shadow-sm overflow-hidden">
-        <div className="p-6 border-b border-gray-100 flex justify-between items-center">
-          <div className="flex items-center gap-2">
-            <TrendingUp className="text-primary h-5 w-5" />
-            <h2 className="text-lg font-semibold text-gray-800">Latest Blogs</h2>
+      <div className="bg-zinc-900 border border-zinc-800 shadow-xl overflow-hidden">
+        <div className="p-6 border-b border-zinc-800 flex justify-between items-center bg-black/40">
+          <div className="flex items-center gap-3">
+            <TrendingUp className="text-[var(--color-neon-red)] h-5 w-5" />
+            <h2 className="text-xl font-black italic tracking-tight text-white">RECENT_ACTIVITY</h2>
           </div>
-          <button className="text-sm text-primary font-medium hover:text-primary/80 transition-colors">
-            View All
+          <button className="text-xs font-mono text-[var(--color-electric-blue)] hover:text-white transition-colors uppercase border border-[var(--color-electric-blue)] px-3 py-1 hover:bg-[var(--color-electric-blue)] hover:bg-opacity-20">
+            VIEW_ALL_LOGS
           </button>
         </div>
-        
+
         <div className="overflow-x-auto">
           <table className="w-full text-left border-collapse">
             <thead>
-              <tr className="bg-gray-50/50 text-gray-500 text-xs uppercase tracking-wider">
-                <th scope="col" className="px-6 py-4 font-medium">#</th>
-                <th scope="col" className="px-6 py-4 font-medium">Blog Title</th>
-                <th scope="col" className="px-6 py-4 font-medium">Date</th>
-                <th scope="col" className="px-6 py-4 font-medium">Status</th>
-                <th scope="col" className="px-6 py-4 font-medium text-right">Actions</th>
+              <tr className="bg-black text-zinc-500 text-xs font-mono uppercase tracking-wider border-b border-zinc-800">
+                <th scope="col" className="px-6 py-4 font-bold">#ID</th>
+                <th scope="col" className="px-6 py-4 font-bold">FILE_NAME</th>
+                <th scope="col" className="px-6 py-4 font-bold">TIMESTAMP</th>
+                <th scope="col" className="px-6 py-4 font-bold">STATUS</th>
+                <th scope="col" className="px-6 py-4 font-bold text-right">COMMANDS</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-gray-100">
+            <tbody className="divide-y divide-zinc-800">
               {dashboardData.recentBlogs.map((blog, index) => (
                 <BlogTableItem
                   key={blog._id}

@@ -8,28 +8,28 @@ const CommentTableItem = ({ comment, fetchComments }) => {
   const BlogDate = new Date(createAt);
 
   return (
-    <tr className="border-b border-gray-100 hover:bg-gray-50/50 transition-colors">
-      
+    <tr className="border-b border-zinc-800 hover:bg-zinc-800/50 transition-colors group">
+
       {/* Content Cell */}
       <td className="px-6 py-4 align-top">
         <div className="flex gap-3">
           {/* Avatar Placeholder */}
-          <div className="mt-1 h-9 w-9 rounded-full bg-indigo-50 flex items-center justify-center text-indigo-500 flex-shrink-0">
+          <div className="mt-1 h-9 w-9 rounded-full bg-zinc-900 border border-zinc-700 flex items-center justify-center text-[var(--color-electric-blue)] flex-shrink-0">
             <User size={18} />
           </div>
 
           <div className="flex flex-col">
             {/* Comment Body */}
-            <p className="text-gray-800 text-sm font-medium leading-relaxed mb-1">
+            <p className="text-zinc-200 text-sm font-medium leading-relaxed mb-1 font-mono">
               "{content}"
             </p>
-            
+
             {/* Metadata (Name & Blog Title) */}
-            <div className="flex items-center gap-2 text-xs text-gray-500">
-              <span className="font-semibold text-gray-600">{name}</span>
-              <span>•</span>
-              <span className="flex items-center gap-1 text-gray-400">
-                 on <span className="text-gray-600 italic">"{blog?.title || 'Unknown Blog'}"</span>
+            <div className="flex items-center gap-2 text-xs text-zinc-500 font-mono">
+              <span className="font-bold text-[var(--color-neon-red)]">{name}</span>
+              <span>//</span>
+              <span className="flex items-center gap-1 text-zinc-500">
+                ON <span className="text-zinc-400 italic">"{blog?.title || 'UNKNOWN_OR_DELETED'}"</span>
               </span>
             </div>
           </div>
@@ -37,38 +37,38 @@ const CommentTableItem = ({ comment, fetchComments }) => {
       </td>
 
       {/* Date Cell */}
-      <td className="px-6 py-4 align-top whitespace-nowrap text-sm text-gray-500">
+      <td className="px-6 py-4 align-top whitespace-nowrap text-xs font-mono text-zinc-500 uppercase">
         {BlogDate.toLocaleDateString('en-US', {
-            year: 'numeric',
-            month: 'short',
-            day: 'numeric'
+          year: 'numeric',
+          month: 'short',
+          day: 'numeric'
         })}
       </td>
 
       {/* Actions Cell */}
       <td className="px-6 py-4 align-top text-right">
         <div className="flex items-center justify-end gap-3">
-          
+
           {/* Approval Status/Button */}
           {!isApproved ? (
-            <button 
-                className="p-2 rounded-lg text-green-600 bg-green-50 border border-green-100 hover:bg-green-100 transition-colors"
-                title="Approve Comment"
+            <button
+              className="p-2 rounded hover:bg-green-900/30 text-zinc-400 hover:text-green-500 transition-colors border border-transparent hover:border-green-500/50"
+              title="AUTHORIZE_TRANSMISSION"
             >
-                {/* Use Lucide Icon if available, else fallback to img */}
-                <Check size={18} />
-                {/* <img src={assets.tick_icon} className="w-5 h-5" alt="Approve" /> */}
+              {/* Use Lucide Icon if available, else fallback to img */}
+              <Check size={18} />
+              {/* <img src={assets.tick_icon} className="w-5 h-5" alt="Approve" /> */}
             </button>
           ) : (
-            <span className="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-green-100 text-green-700">
-               Approved
+            <span className="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-black uppercase tracking-widest bg-green-900/20 text-green-500 border border-green-500/30">
+              AUTHORIZED
             </span>
           )}
 
           {/* Delete Button */}
-          <button 
-            className="p-2 rounded-lg text-red-600 hover:bg-red-50 hover:text-red-700 transition-colors"
-            title="Delete Comment"
+          <button
+            className="p-2 rounded hover:bg-red-900/30 text-zinc-400 hover:text-red-500 transition-colors border border-transparent hover:border-red-500/50"
+            title="TERMINATE_TRANSMISSION"
           >
             <Trash2 size={18} />
             {/* <img src={assets.bin_icon} className="w-5 h-5" alt="Delete" /> */}

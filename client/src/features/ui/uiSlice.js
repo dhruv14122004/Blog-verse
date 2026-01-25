@@ -4,7 +4,7 @@ const initialState = {
     isMenuOpen: false,
     isFocusMode: false,
     activeModal: null,
-    hasSeenIntro: false,
+    hasSeenIntro: sessionStorage.getItem('hasSeenIntro') === 'true',
 };
 
 const uiSlice = createSlice({
@@ -13,6 +13,7 @@ const uiSlice = createSlice({
     reducers: {
         setIntroSeen: (state) => {
             state.hasSeenIntro = true;
+            sessionStorage.setItem('hasSeenIntro', 'true');
         },
         toggleMenu: (state) => {
             state.isMenuOpen = !state.isMenuOpen;

@@ -28,12 +28,15 @@ const BlogTableItem = ({ blog, index, fetchBlogs }) => {
   }
 
   return (
-    <tr className="hover:bg-gray-50/60">
-      <td className="px-6 py-4 text-sm text-gray-700">{index + 1}</td>
-      <td className="px-6 py-4 text-sm font-medium text-gray-800 truncate max-w-[300px]">{blog.title}</td>
-      <td className="px-6 py-4 text-sm text-gray-600">{formattedDate}</td>
+    <tr className="hover:bg-zinc-800/50 transition-colors group border-b border-zinc-800">
+      <td className="px-6 py-4 text-sm font-mono text-zinc-500">{index + 1}</td>
+      <td className="px-6 py-4 text-sm font-bold text-white tracking-tight truncate max-w-[300px]">{blog.title}</td>
+      <td className="px-6 py-4 text-sm font-mono text-zinc-400 uppercase">{formattedDate}</td>
       <td className="px-6 py-4">
-        <span className={`inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium border ${statusClasses} border-transparent`}>
+        <span className={`inline-flex items-center px-2 py-0.5 rounded text-xs font-black uppercase tracking-widest border ${blog.isPublished
+            ? 'bg-green-900/20 text-green-500 border-green-500/50'
+            : 'bg-yellow-900/20 text-yellow-500 border-yellow-500/50'
+          }`}>
           {statusLabel}
         </span>
       </td>
@@ -41,27 +44,24 @@ const BlogTableItem = ({ blog, index, fetchBlogs }) => {
         <div className="inline-flex items-center gap-2">
           <button
             onClick={handleView}
-            className="inline-flex items-center gap-1 px-2.5 py-1.5 text-xs rounded-lg border border-gray-200 text-gray-700 hover:bg-gray-100"
-            aria-label="View"
+            className="p-2 text-zinc-400 hover:text-[var(--color-electric-blue)] hover:bg-zinc-800 rounded transition-colors"
+            title="VIEW_FILE"
           >
-            <Eye className="h-4 w-4"/>
-            View
+            <Eye className="h-4 w-4" />
           </button>
           <button
             onClick={handleEdit}
-            className="inline-flex items-center gap-1 px-2.5 py-1.5 text-xs rounded-lg border border-gray-200 text-gray-700 hover:bg-gray-100"
-            aria-label="Edit"
+            className="p-2 text-zinc-400 hover:text-white hover:bg-zinc-800 rounded transition-colors"
+            title="EDIT_FILE"
           >
-            <Pencil className="h-4 w-4"/>
-            Edit
+            <Pencil className="h-4 w-4" />
           </button>
           <button
             onClick={handleDelete}
-            className="inline-flex items-center gap-1 px-2.5 py-1.5 text-xs rounded-lg border border-red-200 text-red-700 hover:bg-red-50"
-            aria-label="Delete"
+            className="p-2 text-zinc-400 hover:text-[var(--color-neon-red)] hover:bg-zinc-800 rounded transition-colors"
+            title="DELETE_FILE"
           >
-            <Trash className="h-4 w-4"/>
-            Delete
+            <Trash className="h-4 w-4" />
           </button>
         </div>
       </td>

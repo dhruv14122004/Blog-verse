@@ -1,5 +1,5 @@
-import React, { use } from 'react';
-import { Mail, Lock, ArrowRight } from 'lucide-react';
+import React from 'react';
+import { Mail, Lock, ArrowRight, ShieldCheck } from 'lucide-react';
 import { assets } from '../../assets/assets';
 import { useNavigate } from 'react-router-dom';
 
@@ -8,36 +8,40 @@ const Login = () => {
   const navigate = useNavigate();
 
   return (
-    // 1. Background: Changed to a subtle gradient for depth, rather than flat white
-    <div className="min-h-screen flex items-center justify-center bg-gray-50/50">
-      
-      {/* 2. Card: Increased shadow, subtle border, and better padding */}
-      <div className="w-full max-w-md bg-white border border-gray-100 rounded-2xl shadow-xl overflow-hidden">
-        
-        <div className="p-8">
+    <div className="min-h-screen flex items-center justify-center bg-black font-sans selection:bg-[var(--color-neon-red)] selection:text-white relative overflow-hidden">
+
+      {/* Background Decor */}
+      <div className="absolute inset-0 z-0 opacity-20 pointer-events-none bg-[radial-gradient(circle_at_center,_var(--color-zinc-800)_1px,_transparent_1px)] bg-[length:20px_20px]"></div>
+
+      <div className="w-full max-w-md bg-zinc-900 border-2 border-zinc-800 p-1 relative z-10 shadow-[0_0_50px_rgba(255,45,45,0.1)]">
+
+        {/* Comic Border Effect */}
+        <div className="absolute -top-2 -left-2 w-4 h-4 bg-[var(--color-neon-red)] z-20"></div>
+        <div className="absolute -bottom-2 -right-2 w-4 h-4 bg-[var(--color-electric-blue)] z-20"></div>
+
+        <div className="p-8 border border-zinc-800 h-full bg-zinc-900/90 backdrop-blur-sm">
           {/* Header Section */}
-          <div className="text-center mb-8">
-            {/* Optional: Placeholder for Logo */}
-            <div className="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-primary/10 text-primary mb-4">
-              <img src={assets.favicon} alt="" />
+          <div className="text-center mb-10">
+            <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-black border-2 border-[var(--color-neon-red)] text-[var(--color-neon-red)] mb-6 shadow-[4px_4px_0px_#fff]">
+              <ShieldCheck size={32} />
             </div>
-            <h1 className="text-2xl font-bold text-gray-900 tracking-tight">Welcome back</h1>
-            <p className="text-sm text-gray-500 mt-2">Please enter your details to sign in.</p>
+            <h1 className="text-4xl font-black italic tracking-tighter text-white uppercase mb-2">ADMIN_ACCESS</h1>
+            <p className="text-xs font-mono text-zinc-500 uppercase tracking-widest">SECURE_CHANNEL_ESTABLISHED</p>
           </div>
 
           <form className="space-y-6">
             {/* Email Field */}
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1.5">Email address</label>
+              <label className="block text-xs font-mono font-bold text-zinc-500 uppercase mb-2">IDENTITY_KEY (EMAIL)</label>
               <div className="relative group">
                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                  <Mail className="h-5 w-5 text-gray-400 group-focus-within:text-primary transition-colors" />
+                  <Mail className="h-5 w-5 text-zinc-600 group-focus-within:text-[var(--color-neon-red)] transition-colors" />
                 </div>
                 <input
                   type="email"
-                  placeholder="you@example.com"
-                  className="w-full pl-10 pr-4 py-2.5 bg-white border border-gray-300 rounded-xl text-sm shadow-sm placeholder-gray-400
-                           focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary
+                  placeholder="name@inkbyte.com"
+                  className="w-full pl-10 pr-4 py-3 bg-black border border-zinc-800 rounded text-white text-sm font-mono placeholder-zinc-700
+                           focus:outline-none focus:border-[var(--color-neon-red)] focus:ring-1 focus:ring-[var(--color-neon-red)]
                            transition-all duration-200"
                 />
               </div>
@@ -45,21 +49,21 @@ const Login = () => {
 
             {/* Password Field */}
             <div>
-              <div className="flex items-center justify-between mb-1.5">
-                <label className="block text-sm font-medium text-gray-700">Password</label>
-                <a href="#" className="text-sm font-medium text-primary hover:text-primary/80 transition-colors">
-                  Forgot password?
+              <div className="flex items-center justify-between mb-2">
+                <label className="block text-xs font-mono font-bold text-zinc-500 uppercase">ACCESS_CODE</label>
+                <a href="#" className="text-xs font-mono text-[var(--color-electric-blue)] hover:text-white transition-colors">
+                  RESET_CODE?
                 </a>
               </div>
               <div className="relative group">
                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                  <Lock className="h-5 w-5 text-gray-400 group-focus-within:text-primary transition-colors" />
+                  <Lock className="h-5 w-5 text-zinc-600 group-focus-within:text-[var(--color-neon-red)] transition-colors" />
                 </div>
                 <input
                   type="password"
                   placeholder="••••••••"
-                  className="w-full pl-10 pr-4 py-2.5 bg-white border border-gray-300 rounded-xl text-sm shadow-sm placeholder-gray-400
-                           focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary
+                  className="w-full pl-10 pr-4 py-3 bg-black border border-zinc-800 rounded text-white text-sm font-mono placeholder-zinc-700
+                           focus:outline-none focus:border-[var(--color-neon-red)] focus:ring-1 focus:ring-[var(--color-neon-red)]
                            transition-all duration-200"
                 />
               </div>
@@ -67,49 +71,15 @@ const Login = () => {
 
             {/* Action Buttons */}
             <button
-              onClick={()=>navigate("/admin")}
+              onClick={() => navigate("/admin")}
               type="submit"
-              className="w-full flex items-center justify-center bg-primary text-white py-2.5 rounded-xl font-medium shadow-lg shadow-primary/30 
-                       hover:bg-primary/90 hover:shadow-xl hover:shadow-primary/40 
-                       active:scale-[0.98] transition-all duration-200"
+              className="w-full group flex items-center justify-center bg-[var(--color-neon-red)] text-white py-4 font-black italic uppercase tracking-wider skew-x-[-10deg] hover:bg-red-600 transition-all shadow-[4px_4px_0px_white] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none mt-8"
             >
-              Sign in
-              <ArrowRight className="ml-2 h-4 w-4" />
-            </button>
-
-            {/* Divider */}
-            <div className="relative my-6">
-              <div className="absolute inset-0 flex items-center">
-                <div className="w-full border-t border-gray-200"></div>
-              </div>
-              <div className="relative flex justify-center text-sm">
-                <span className="px-2 bg-white text-gray-500">Or continue with</span>
-              </div>
-            </div>
-
-            {/* Social Login (Google Placeholder) */}
-            <button
-              type="button"
-              className="w-full flex items-center justify-center px-4 py-2.5 border border-gray-300 rounded-xl shadow-sm bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors"
-            >
-              <img 
-                src="https://www.svgrepo.com/show/475656/google-color.svg" 
-                alt="Google" 
-                className="h-5 w-5 mr-2" 
-              />
-              Sign in with Google
+              <span className="skew-x-[10deg] flex items-center gap-2">
+                AUTHENTICATE <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-transform" />
+              </span>
             </button>
           </form>
-        </div>
-
-        {/* Footer */}
-        <div className="px-8 py-4 bg-gray-50 border-t border-gray-100 text-center">
-          <p className="text-sm text-gray-600">
-            Don't have an account?{' '}
-            <a href="#" className="font-semibold text-primary hover:text-primary/80 transition-colors">
-              Sign up
-            </a>
-          </p>
         </div>
       </div>
     </div>
