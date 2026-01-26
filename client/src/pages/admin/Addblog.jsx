@@ -2,9 +2,12 @@ import React, { useState } from 'react';
 import { Upload, FileText, Type, Layers, Image as ImageIcon } from 'lucide-react';
 import { useAppContext } from '../../context/AppContext';
 import toast from 'react-hot-toast';
+import { marked } from 'marked';
 
 const Addblog = () => {
   const [image, setImage] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [activeTab, setActiveTab] = useState('write');
   const [data, setData] = useState({
     title: "",
     subtitle: "",
@@ -15,6 +18,20 @@ const Addblog = () => {
   });
 
   const { axios } = useAppContext();
+  const textareaRef = React.useRef(null);
+
+  const adjustTextareaHeight = () => {
+    if (textareaRef.current) {
+      textareaRef.current.style.height = 'auto'; // Reset height
+      textareaRef.current.style.height = `${textareaRef.current.scrollHeight}px`; // Set to scrollHeight
+    }
+  };
+
+  React.useEffect(() => {
+    if (activeTab === 'write') {
+      adjustTextareaHeight();
+    }
+  }, [data.description, activeTab]);
 
   const onChangeHandler = (event) => {
     const name = event.target.name;
@@ -28,6 +45,31 @@ const Addblog = () => {
     }
   }
 
+  const generateContent = async (provider) => {
+    if (!data.description.trim()) {
+      toast.error("Please enter a prompt in the content body first");
+      return;
+    }
+    setLoading(true);
+    try {
+      const endpoint = provider === 'gemini'
+        ? '/api/blog/generate-content/gemini'
+        : '/api/blog/generate-content/mistral';
+
+      const { data: res } = await axios.post(endpoint, { prompt: data.description });
+      if (res.success) {
+        setData(prev => ({ ...prev, description: res.content }));
+        toast.success(`Generated with ${provider.charAt(0).toUpperCase() + provider.slice(1)}`);
+      } else {
+        toast.error(res.message);
+      }
+    } catch (err) {
+      toast.error(err.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   const onSubmitHandler = async (event) => {
     event.preventDefault();
     if (!image) {
@@ -38,7 +80,8 @@ const Addblog = () => {
     const formData = new FormData();
     formData.append("title", data.title);
     formData.append("subtitle", data.subtitle);
-    formData.append("description", data.description);
+    // Convert Markdown to HTML before sending
+    formData.append("description", marked.parse(data.description));
     formData.append("category", data.category);
     formData.append("author", data.author);
     formData.append("image", image);
@@ -56,6 +99,7 @@ const Addblog = () => {
           author: "Dhruv",
           image: null
         });
+        setActiveTab('write');
       } else {
         toast.error(responseData.message);
       }
@@ -75,7 +119,6 @@ const Addblog = () => {
       </div>
 
       <form onSubmit={onSubmitHandler} className="space-y-8">
-
         {/* Image Upload Section */}
         <div className="bg-zinc-900 border border-zinc-800 p-6 shadow-lg">
           <label className="block text-xs font-mono font-bold text-zinc-500 uppercase mb-4">COVER_IMAGE_UPLOAD</label>
@@ -153,7 +196,6 @@ const Addblog = () => {
               </div>
             </div>
 
-            {/* Author - Could be dynamic */}
             <div>
               <label className="block text-xs font-mono font-bold text-zinc-500 uppercase mb-2">AUTHOR_ID</label>
               <input
@@ -166,17 +208,71 @@ const Addblog = () => {
           </div>
 
           <div>
-            <label className="block text-xs font-mono font-bold text-zinc-500 uppercase mb-2">CONTENT_BODY (HTML)</label>
-            <textarea
-              name="description"
-              onChange={onChangeHandler}
-              value={data.description}
-              rows="10"
-              placeholder="<p>Write your content here...</p>"
-              required
-              className="w-full p-4 bg-black border border-zinc-800 rounded text-zinc-300 font-mono text-sm focus:outline-none focus:border-[var(--color-neon-red)] transition-all resize-y placeholder:text-zinc-800"
-            ></textarea>
-            <p className="text-xs text-zinc-600 mt-2 text-right">HTML_TAGS_SUPPORTED</p>
+            <div className="flex justify-between items-end mb-2">
+              <label className="block text-xs font-mono font-bold text-zinc-500 uppercase">CONTENT_BODY (MARKDOWN)</label>
+
+              <div className="flex items-center gap-4">
+                <div className="flex border border-zinc-700 rounded overflow-hidden">
+                  <button
+                    type="button"
+                    onClick={() => setActiveTab('write')}
+                    className={`px-4 py-1 text-xs font-bold uppercase transition-colors ${activeTab === 'write' ? 'bg-zinc-700 text-white' : 'bg-transparent text-zinc-500 hover:text-white'}`}
+                  >
+                    WRITE
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setActiveTab('preview')}
+                    className={`px-4 py-1 text-xs font-bold uppercase transition-colors ${activeTab === 'preview' ? 'bg-zinc-700 text-white' : 'bg-transparent text-zinc-500 hover:text-white'}`}
+                  >
+                    PREVIEW
+                  </button>
+                </div>
+
+                {activeTab === 'write' && (
+                  <div className='flex gap-2'>
+                    <button
+                      type="button"
+                      onClick={() => generateContent('gemini')}
+                      disabled={loading}
+                      className={`p-1.5 font-bold uppercase rounded transition-all flex items-center justify-center min-w-[80px] text-[10px]
+                                ${loading ? 'bg-zinc-800 cursor-not-allowed opacity-50' : 'bg-[var(--color-neon-red)] hover:bg-red-700 text-white shadow-[2px_2px_0px_white]'}`}
+                    >
+                      {loading ? '...' : 'GEMINI_AI'}
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => generateContent('mistral')}
+                      disabled={loading}
+                      className={`p-1.5 font-bold uppercase rounded transition-all flex items-center justify-center min-w-[80px] text-[10px]
+                                ${loading ? 'bg-zinc-800 cursor-not-allowed opacity-50' : 'bg-white text-black hover:bg-zinc-200 border-2 border-[var(--color-neon-red)]'}`}
+                    >
+                      {loading ? '...' : 'MISTRAL_AI'}
+                    </button>
+                  </div>
+                )}
+              </div>
+            </div>
+
+            {activeTab === 'write' ? (
+              <textarea
+                ref={textareaRef}
+                name="description"
+                onChange={onChangeHandler}
+                value={data.description}
+                rows="10"
+                placeholder="Write in Markdown..."
+                required
+                disabled={loading}
+                className={`w-full p-4 bg-black border border-zinc-800 rounded text-zinc-300 font-mono text-sm focus:outline-none focus:border-[var(--color-neon-red)] transition-all resize-y placeholder:text-zinc-800 min-h-[300px] ${loading ? 'opacity-50 cursor-not-allowed' : ''}`}
+              ></textarea>
+            ) : (
+              <div
+                className="w-full p-6 bg-zinc-900 border border-zinc-800 rounded prose prose-invert prose-sm max-w-none min-h-[300px]"
+                dangerouslySetInnerHTML={{ __html: marked.parse(data.description || '*No content to preview*') }}
+              />
+            )}
+            <p className="text-xs text-zinc-600 mt-2 text-right">MARKDOWN_SUPPORTED</p>
           </div>
         </div>
 

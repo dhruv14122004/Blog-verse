@@ -3,10 +3,13 @@ import imagekit from "../configs/imagekit.js";
 import BLOG from "../models/blog.model.js";
 import COMMENT from "../models/comment.model.js";
 import auth from "../middlewares/auth.js";
+import main from "../configs/gemini.js";
+import mistral from "../configs/mistral.js";
 
 export const createBlog = async (req, res) => {
     try {
-        const { title, subTitle, description, category, author, isPublished } = JSON.parse(req.body.blog);
+        const {title, subtitle, description, category, author, isPublished } = req.body;
+        const subTitle = subtitle; // Mapping frontend 'subtitle' to model 'subTitle'
         const imageFile = req.file
         if (!title || !subTitle || !description || !category || !author) {
             return res.status(400).json({
@@ -182,4 +185,38 @@ export const getBlogComments = async (req, res) => {
     }
 }
 
+
+export const generateBlogContentGemini = async (req, res) => {
+    try {
+        const prompt = req.body.prompt;
+        const content = await main(prompt + "Generate a blog content for this topic in markdown format. Dont add any extra content other than the blog content");
+        res.status(200).json({
+            success: true,
+            content
+        })
+    } catch (error) {
+        res.status(500).json({
+            success: false,
+            message: error.message
+        })
+    }
+}
+
+
+export const generateBlogContentMistral = async (req, res) => {
+    try {
+        const prompt = req.body.prompt;
+        const content = await mistral(prompt + "Generate a blog content for this topic in markdown format. Dont add any extra content other than the blog content. also dont add markdown``` in the starting of the content");
+        res.status(200).json({
+            success: true,
+            content
+        })
+    } catch (error) {
+        res.status(500).json({
+            success: false,
+            message: error.message
+        })
+    }
+
+}
 

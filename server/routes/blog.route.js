@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { createBlog, getAllBlogs, getBlogById, togglePublished, deleteBlogById, createComment, getBlogComments } from "../controllers/blog.controller.js";
+import { createBlog, getAllBlogs, getBlogById, togglePublished, deleteBlogById, createComment, getBlogComments, generateBlogContentGemini, generateBlogContentMistral } from "../controllers/blog.controller.js";
 import upload from "../middlewares/multer.js";
 import auth from "../middlewares/auth.js";
 
@@ -15,5 +15,8 @@ blogRouter.delete("/delete/:id", auth, deleteBlogById)
 blogRouter.post("/comment/:blogId", createComment)
 blogRouter.get("/comment/:blogId", getBlogComments)
 
+// Generate Blog Content
+blogRouter.post("/generate-content/gemini", generateBlogContentGemini)
+blogRouter.post("/generate-content/mistral", generateBlogContentMistral)
 
 export default blogRouter;
