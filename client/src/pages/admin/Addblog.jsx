@@ -1,15 +1,20 @@
 import React, { useState } from 'react';
 import { Upload, FileText, Type, Layers, Image as ImageIcon } from 'lucide-react';
+import { useAppContext } from '../../context/AppContext';
+import toast from 'react-hot-toast';
 
 const Addblog = () => {
   const [image, setImage] = useState(null);
   const [data, setData] = useState({
     title: "",
+    subtitle: "",
     description: "",
     category: "Technology", // Default
     author: "Dhruv", // Hardcoded for now
     image: null
   });
+
+  const { axios } = useAppContext();
 
   const onChangeHandler = (event) => {
     const name = event.target.name;
@@ -20,15 +25,44 @@ const Addblog = () => {
   const onImageChange = (e) => {
     if (e.target.files && e.target.files[0]) {
       setImage(e.target.files[0]);
-      setData(data => ({ ...data, image: e.target.files[0] }));
     }
   }
 
   const onSubmitHandler = async (event) => {
     event.preventDefault();
-    console.log("Submitting Blog Data:", { ...data, image });
-    // TODO: Integrate API call
-    alert("BLOG TRANSMISSION INITIATED (Simulated)");
+    if (!image) {
+      toast.error("Please upload a cover image");
+      return;
+    }
+
+    const formData = new FormData();
+    formData.append("title", data.title);
+    formData.append("subtitle", data.subtitle);
+    formData.append("description", data.description);
+    formData.append("category", data.category);
+    formData.append("author", data.author);
+    formData.append("image", image);
+
+    try {
+      const { data: responseData } = await axios.post('/api/blog/create', formData);
+      if (responseData.success) {
+        toast.success(responseData.message);
+        setImage(null);
+        setData({
+          title: "",
+          subtitle: "",
+          description: "",
+          category: "Technology",
+          author: "Dhruv",
+          image: null
+        });
+      } else {
+        toast.error(responseData.message);
+      }
+    } catch (error) {
+      toast.error(error.message);
+      console.error(error);
+    }
   }
 
   return (

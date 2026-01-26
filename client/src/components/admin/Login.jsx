@@ -2,10 +2,34 @@ import React from 'react';
 import { Mail, Lock, ArrowRight, ShieldCheck } from 'lucide-react';
 import { assets } from '../../assets/assets';
 import { useNavigate } from 'react-router-dom';
+import { useAppContext } from '../../context/AppContext';
+import { useState } from 'react';
+import toast from 'react-hot-toast';
 
 const Login = () => {
 
   const navigate = useNavigate();
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const { axios, setToken } = useAppContext()
+
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    try {
+      const { data } = await axios.post("/api/admin/login", { email, password })
+      if (data.success) {
+        setToken(data.token)
+        localStorage.setItem('token', data.token)
+        axios.defaults.headers.common['Authorization'] = `${data.token}`
+        navigate('/admin')
+        toast.success(data.message)
+      } else {
+        toast.error(data.message)
+      }
+    } catch (error) {
+      toast.error(error.message)
+    }
+  }
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-black font-sans selection:bg-[var(--color-neon-red)] selection:text-white relative overflow-hidden">
@@ -29,7 +53,7 @@ const Login = () => {
             <p className="text-xs font-mono text-zinc-500 uppercase tracking-widest">SECURE_CHANNEL_ESTABLISHED</p>
           </div>
 
-          <form className="space-y-6">
+          <form className="space-y-6" onSubmit={handleSubmit}>
             {/* Email Field */}
             <div>
               <label className="block text-xs font-mono font-bold text-zinc-500 uppercase mb-2">IDENTITY_KEY (EMAIL)</label>
@@ -43,6 +67,8 @@ const Login = () => {
                   className="w-full pl-10 pr-4 py-3 bg-black border border-zinc-800 rounded text-white text-sm font-mono placeholder-zinc-700
                            focus:outline-none focus:border-[var(--color-neon-red)] focus:ring-1 focus:ring-[var(--color-neon-red)]
                            transition-all duration-200"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                 />
               </div>
             </div>
@@ -65,13 +91,15 @@ const Login = () => {
                   className="w-full pl-10 pr-4 py-3 bg-black border border-zinc-800 rounded text-white text-sm font-mono placeholder-zinc-700
                            focus:outline-none focus:border-[var(--color-neon-red)] focus:ring-1 focus:ring-[var(--color-neon-red)]
                            transition-all duration-200"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
                 />
               </div>
             </div>
 
             {/* Action Buttons */}
             <button
-              onClick={() => navigate("/admin")}
+              //   onClick={() => navigate("/admin")}
               type="submit"
               className="w-full group flex items-center justify-center bg-[var(--color-neon-red)] text-white py-4 font-black italic uppercase tracking-wider skew-x-[-10deg] hover:bg-red-600 transition-all shadow-[4px_4px_0px_white] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none mt-8"
             >

@@ -3,11 +3,12 @@ import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { addXP } from '../features/user/userSlice';
 import { toggleFocusMode } from '../features/ui/uiSlice';
-import { blog_data, comments_data } from '../assets/assets';
 import SpiderNavbar from '../components/navigation/SpiderNavbar';
 import ComicCover from '../components/blog/ComicCover';
 import { motion, AnimatePresence } from 'framer-motion';
 import Moment from 'moment';
+import { useAppContext } from '../context/AppContext';
+import toast from 'react-hot-toast';
 
 const PostHeader = ({ date, author, category, isFocusMode, onToggleFocus }) => (
   <div className="flex flex-wrap items-center gap-4 my-8 font-mono border-b-2 border-dashed border-gray-700 pb-4 text-[var(--color-web-white)] justify-between">
@@ -36,6 +37,7 @@ const Blog = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
   const isFocusMode = useSelector((state) => state.ui.isFocusMode);
+  const { axios } = useAppContext();
 
   const [data, setData] = useState(null);
   const [comments, setComments] = useState([]);
@@ -45,15 +47,30 @@ const Blog = () => {
   const [commentText, setCommentText] = useState('');
 
   const fetchBlogData = async () => {
-    const data = blog_data.find((blog) => blog._id === id);
-    if (data) {
-      setData(data);
-      dispatch(addXP(5));
+    try {
+      const { data } = await axios.get('/api/blog/' + id);
+      if (data.success) {
+        setData(data.blog);
+        dispatch(addXP(5));
+      } else {
+        toast.error(data.message);
+      }
+    } catch (error) {
+      toast.error(error.message);
     }
   }
 
   const fetchComments = async () => {
-    setComments(comments_data);
+    try {
+      const { data } = await axios.get('/api/blog/comment/' + id);
+      if (data.success) {
+        setComments(data.comments);
+      } else {
+        toast.error("Failed to load comments");
+      }
+    } catch (error) {
+      console.error(error);
+    }
   }
 
   useEffect(() => {
@@ -61,19 +78,24 @@ const Blog = () => {
     fetchComments();
   }, [id]);
 
-  const addComment = (e) => {
+  const addComment = async (e) => {
     e.preventDefault();
     if (!authorName.trim() || !commentText.trim()) return;
 
-    const newComment = {
-      name: authorName,
-      content: commentText,
-      createdAt: new Date().toISOString()
-    };
-    setComments(prev => [newComment, ...prev]);
-    setAuthorName('');
-    setCommentText('');
-    dispatch(addXP(2)); // XP for commenting
+    try {
+      const { data } = await axios.post('/api/blog/comment/' + id, { authorName, content: commentText });
+      if (data.success) {
+        toast.success(data.message);
+        fetchComments(); // Refresh comments
+        setAuthorName('');
+        setCommentText('');
+        dispatch(addXP(2)); // XP for commenting
+      } else {
+        toast.error(data.message);
+      }
+    } catch (error) {
+      toast.error(error.message);
+    }
   };
 
   if (!data) return <div className="min-h-screen bg-[#0b0b0f] text-white flex items-center justify-center font-mono">ESTABLISHING CONNECTION...</div>;
@@ -156,7 +178,7 @@ const Blog = () => {
                     className='bg-zinc-900/30 border-l-2 border-[var(--color-glitch-purple)] p-6'
                   >
                     <div className='flex justify-between items-baseline mb-2 font-mono text-xs text-zinc-500'>
-                      <span className='text-[var(--color-neon-red)] font-bold text-sm'>{comment.name.toUpperCase()}</span>
+                      <span className='text-[var(--color-neon-red)] font-bold text-sm'>{comment.authorName?.toUpperCase() || 'ANONYMOUS'}</span>
                       <span>{Moment(comment.createdAt).fromNow().toUpperCase()}</span>
                     </div>
                     <p className='text-zinc-300'>{comment.content}</p>

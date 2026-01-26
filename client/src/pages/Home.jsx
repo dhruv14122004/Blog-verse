@@ -10,10 +10,13 @@ import Hero from '../components/common/Hero';
 import { AnimatePresence } from 'framer-motion';
 import milesBg from '../assets/miles-morales-3840x2160-18800.png';
 
+import { useAppContext } from '../context/AppContext';
+
 const Home = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const hasSeenIntro = useSelector((state) => state.ui.hasSeenIntro);
+    const { blog, input } = useAppContext();
 
     // If intro already seen, don't load. Else, start loading.
     const [loading, setLoading] = useState(!hasSeenIntro);
@@ -22,6 +25,10 @@ const Home = () => {
         dispatch(setIntroSeen());
     };
 
+    const filteredBlogs = input === ''
+        ? blog
+        : blog.filter((b) => b.title.toLowerCase().includes(input.toLowerCase()) || b.category.toLowerCase().includes(input.toLowerCase()));
+    console.log(blog);
     return (
         <>
             <AnimatePresence>
@@ -44,8 +51,8 @@ const Home = () => {
 
                         {/* Comic Grid */}
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12 px-2 md:px-0">
-                            {blog_data.map((blog, index) => (
-                                <ComicCard key={blog._id} blog={blog} index={index} />
+                            {filteredBlogs.map((b, index) => (
+                                <ComicCard key={b._id} blog={b} index={index} />
                             ))}
                         </div>
                     </main>

@@ -1,11 +1,12 @@
 import React from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import spiderLogo from '../../assets/spider-man-across-3840x2160-10138.png';
+import { useAppContext } from '../../context/AppContext';
 
 const SpiderNavbar = () => {
-    const navigate = useNavigate();
-    const location = window.location.pathname; // Simple check for current path
-    const isAdmin = location.includes('/admin');
+    const { navigate, token, setToken } = useAppContext()
+    const location = useLocation();
+    // const isAdmin = location.includes('/admin'); // Removed unused variable
 
     return (
         <nav className="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-6 py-6 border-b border-zinc-800 bg-black/80 backdrop-blur-md">
@@ -14,19 +15,25 @@ const SpiderNavbar = () => {
                 BLOGVERSE
             </div>
             <div className="flex items-center gap-6 font-mono font-bold text-sm text-[var(--color-web-white)]">
-                <Link to="/" className="hover:text-[var(--color-neon-red)] transition-colors">HOME</Link>
-                <Link to="/about" className="hover:text-[var(--color-electric-blue)] transition-colors">ABOUT</Link>
+                <Link to="/" className="hover:text-[var(--color-neon-red)] transition-colors cursor-pointer">HOME</Link>
+                <button onClick={() => navigate('https://dihruv.me')} className="hover:text-[var(--color-electric-blue)] transition-colors cursor-pointer">ABOUT</button>
                 <button
                     onClick={() => {
-                        if (isAdmin) {
-                            navigate('/'); // Logout logic: redirect to home
+                        if (!token) {
+                            navigate('/login');
                         } else {
-                            navigate('/login'); // Go to login first
+                            if (location.pathname.includes('/admin')) {
+                                setToken(null);
+                                localStorage.removeItem('token');
+                                navigate('/');
+                            } else {
+                                navigate('/admin');
+                            }
                         }
                     }}
                     className="hidden sm:block bg-[var(--color-neon-red)] text-white px-6 py-2 hover:bg-red-600 transition-all skew-x-[-10deg]"
                 >
-                    {isAdmin ? 'LOGOUT' : 'ADMIN_PANEL'}
+                    {!token ? 'LOGIN' : (location.pathname.includes('/admin') ? 'LOGOUT' : 'ADMIN')}
                 </button>
             </div>
         </nav>

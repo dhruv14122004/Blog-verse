@@ -1,10 +1,41 @@
 import React from 'react';
 import { assets } from '../../assets/assets';
 import { Check, Trash2, MessageCircle, User } from 'lucide-react'; // Installing lucide-react is recommended for this theme
+import { useAppContext } from '../../context/AppContext';
+import toast from 'react-hot-toast';
 
 const CommentTableItem = ({ comment, fetchComments }) => {
+  const { axios } = useAppContext();
   // Destructuring with safety checks
   const { blog, createAt, _id, name, content, isApproved } = comment;
+
+  const handleApprove = async () => {
+    try {
+      const { data } = await axios.post(`/api/admin/comment/${_id}/toggle-approval`);
+      if (data.success) {
+        toast.success(data.message);
+        fetchComments();
+      } else {
+        toast.error(data.message);
+      }
+    } catch (error) {
+      toast.error(error.message);
+    }
+  }
+
+  const handleDelete = async () => {
+    try {
+      const { data } = await axios.delete(`/api/admin/comment/${_id}`);
+      if (data.success) {
+        toast.success(data.message);
+        fetchComments();
+      } else {
+        toast.error(data.message);
+      }
+    } catch (error) {
+      toast.error(error.message);
+    }
+  }
   const BlogDate = new Date(createAt);
 
   return (
@@ -52,6 +83,7 @@ const CommentTableItem = ({ comment, fetchComments }) => {
           {/* Approval Status/Button */}
           {!isApproved ? (
             <button
+              onClick={handleApprove}
               className="p-2 rounded hover:bg-green-900/30 text-zinc-400 hover:text-green-500 transition-colors border border-transparent hover:border-green-500/50"
               title="AUTHORIZE_TRANSMISSION"
             >
@@ -67,6 +99,7 @@ const CommentTableItem = ({ comment, fetchComments }) => {
 
           {/* Delete Button */}
           <button
+            onClick={handleDelete}
             className="p-2 rounded hover:bg-red-900/30 text-zinc-400 hover:text-red-500 transition-colors border border-transparent hover:border-red-500/50"
             title="TERMINATE_TRANSMISSION"
           >

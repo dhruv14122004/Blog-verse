@@ -1,5 +1,6 @@
 import React from 'react'
-import { Routes, Route } from 'react-router-dom'
+import { Toaster } from 'react-hot-toast'
+import { Routes, Route, Navigate } from 'react-router-dom'
 import Home from './pages/Home.jsx'
 import Blog from './pages/Blog.jsx'
 import About from './pages/About.jsx'
@@ -10,17 +11,20 @@ import Comments from './pages/admin/Comments.jsx'
 import Addblog from './pages/admin/Addblog.jsx'
 import Login from './components/admin/Login.jsx'
 import SmoothScroll from './components/effects/SmoothScroll.jsx'
+import { useAppContext } from './context/AppContext.jsx'
 
 const App = () => {
+  const { token } = useAppContext()
   return (
     <div>
+      <Toaster />
       <SmoothScroll />
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/blog/:id' element={<Blog />} />
         <Route path='/about' element={<About />} />
         <Route path='/login' element={<Login />} />
-        <Route path='/admin' element={<Layout />}>
+        <Route path='/admin' element={token ? <Layout /> : <Navigate to='/login' />}>
           <Route index element={<Dashboard />}></Route>
           <Route path='listblog' element={<Bloglist />}></Route>
           <Route path='comments' element={<Comments />}></Route>

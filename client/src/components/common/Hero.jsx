@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
+import { useAppContext } from '../../context/AppContext';
 
 const Hero = () => {
+    const { input, setInput, blog } = useAppContext();
     return (
         <div className="relative text-center py-24 mb-12 perspective-1000 flex flex-col items-center">
             <motion.div
@@ -49,7 +51,39 @@ const Hero = () => {
                         type="text"
                         placeholder="SEARCH ARTICLES"
                         className="w-full py-4 px-4 bg-transparent outline-none font-black italic text-black placeholder:text-zinc-400 uppercase tracking-wider"
+                        value={input}
+                        onChange={(e) => setInput(e.target.value)}
                     />
+                </div>
+            </motion.div>
+
+            {/* Category Filter - Horizontal Scroll */}
+            <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 1 }}
+                className="mt-8 w-full max-w-4xl mx-auto overflow-x-auto pb-4 hide-scrollbar"
+            >
+                <div className="flex justify-center flex-wrap gap-4 px-4">
+                    {["All", ...new Set(blog.map(b => b.category))].map((cat, index) => (
+                        <button
+                            key={index}
+                            onClick={() => setInput(cat === "All" ? "" : cat)}
+                            className={`
+                                relative px-6 py-2 font-mono text-xs font-bold uppercase tracking-wider border transition-all duration-300
+                                ${(cat === "All" && input === "") || (cat !== "All" && input.toLowerCase() === cat.toLowerCase())
+                                    ? "bg-[var(--color-neon-red)] text-white border-[var(--color-neon-red)]"
+                                    : "bg-black/40 text-zinc-400 border-zinc-700 hover:border-white hover:text-white"
+                                }
+                            `}
+                        >
+                            {/* Hover Glitch Effect */}
+                            <span className="relative z-10">{cat}</span>
+                            {(cat === "All" && input === "") || (cat !== "All" && input.toLowerCase() === cat.toLowerCase()) ? (
+                                <div className="absolute inset-0 bg-[var(--color-neon-red)] blur-[2px] -z-10"></div>
+                            ) : null}
+                        </button>
+                    ))}
                 </div>
             </motion.div>
         </div>
