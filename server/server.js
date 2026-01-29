@@ -4,6 +4,7 @@ import cors from "cors";
 import { connectDb } from "./configs/db.js";
 import adminRouter from "./routes/admin.route.js";
 import blogRouter from "./routes/blog.route.js";
+import rateLimiter from "./middlewares/rateLimiter.js";
 
 
 const app = express();
@@ -13,6 +14,7 @@ connectDb();
 app.use(cors())
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
+app.use(rateLimiter);
 
 app.use(`/api/admin`, adminRouter)
 app.use(`/api/blog`, blogRouter)
