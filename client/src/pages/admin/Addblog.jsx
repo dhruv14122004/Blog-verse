@@ -132,7 +132,7 @@ const Addblog = () => {
                 <p className="text-xs text-zinc-600 mt-2">PNG, JPG, WEBP (MAX 5MB)</p>
               </div>
             )}
-            <input onChange={onImageChange} type="file" id="image" hidden required />
+            <input onChange={onImageChange} type="file" id="image" hidden />
           </label>
         </div>
 
