@@ -98,7 +98,11 @@ const Blog = () => {
     }
   };
 
-  if (!data) return <div className="min-h-screen bg-[#0b0b0f] text-white flex items-center justify-center font-mono">ESTABLISHING CONNECTION...</div>;
+  if (!data) return (
+    <div className="min-h-screen bg-[#0b0b0f] flex items-center justify-center">
+      <div className="w-12 h-12 border-4 border-[var(--color-electric-blue)] border-t-[var(--color-neon-red)] rounded-full animate-spin"></div>
+    </div>
+  );
 
   return (
     <div className={`min-h-screen relative transition-colors duration-500 bg-black text-[var(--color-web-white)] font-sans`}>
