@@ -7,7 +7,6 @@ import ProtectedRoute from './guards/ProtectedRoute.jsx'
 // Lazy Load Pages
 const Home = lazy(() => import('./pages/Home.jsx'))
 const Blog = lazy(() => import('./pages/Blog.jsx'))
-const About = lazy(() => import('./pages/About.jsx'))
 const Layout = lazy(() => import('./pages/admin/Layout.jsx'))
 const Dashboard = lazy(() => import('./pages/admin/Dashboard.jsx'))
 const Bloglist = lazy(() => import('./pages/admin/Bloglist.jsx'))
@@ -35,7 +34,6 @@ const App = () => {
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path='/blog/:id' element={<Blog />} />
-          <Route path='/about' element={<About />} />
           <Route path='/login' element={<Login />} />
 
           {/* Protected Admin Routes */}
