@@ -2,6 +2,7 @@ import React from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import spiderLogo from '../../assets/spider-man-across-3840x2160-10138.png';
 import { useAppContext } from '../../context/AppContext';
+import { FiExternalLink } from 'react-icons/fi';
 
 const SpiderNavbar = () => {
     const { navigate, token, setToken } = useAppContext()
@@ -16,7 +17,10 @@ const SpiderNavbar = () => {
             </div>
             <div className="flex items-center gap-6 font-mono font-bold text-sm text-[var(--color-web-white)]">
                 <Link to="/" className="hover:text-[var(--color-neon-red)] transition-colors cursor-pointer">HOME</Link>
-                <button onClick={() => navigate('https://dihruv.me')} className="hover:text-[var(--color-electric-blue)] transition-colors cursor-pointer">ABOUT</button>
+                <button onClick={() => window.open('https://dihruv.me', '_blank')} className="hidden sm:flex items-center gap-2 bg-[var(--color-white)] text-black px-6 py-2 hover:bg-gray-200 transition-all skew-x-[-10deg] group cursor-pointer">
+                    Made By
+                    <FiExternalLink className="group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-transform" />
+                </button>
                 <button
                     onClick={() => {
                         if (!token) {
@@ -31,7 +35,7 @@ const SpiderNavbar = () => {
                             }
                         }
                     }}
-                    className="hidden sm:block bg-[var(--color-neon-red)] text-white px-6 py-2 hover:bg-red-600 transition-all skew-x-[-10deg]"
+                    className="hidden sm:block bg-[var(--color-neon-red)] text-white px-6 py-2 hover:bg-red-600 transition-all skew-x-[-10deg] cursor-pointer"
                 >
                     {!token ? 'LOGIN' : (location.pathname.includes('/admin') ? 'LOGOUT' : 'ADMIN')}
                 </button>

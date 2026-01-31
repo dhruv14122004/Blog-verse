@@ -28,7 +28,6 @@ const Home = () => {
     const filteredBlogs = input === ''
         ? blog
         : blog.filter((b) => b.title.toLowerCase().includes(input.toLowerCase()) || b.category.toLowerCase().includes(input.toLowerCase()));
-    console.log(blog);
     return (
         <>
             <AnimatePresence>
@@ -39,7 +38,7 @@ const Home = () => {
                 <div className="min-h-screen relative flex flex-col overflow-hidden bg-black selection:bg-[var(--color-neon-red)] selection:text-white">
                     {/* Background Image */}
                     <div className="fixed inset-0 z-0">
-                        <img src={milesBg} alt="Background" className="w-full h-full object-cover opacity-60" />
+                        {/* <img src={milesBg} alt="Background" className="w-full h-full object-cover opacity-60" /> */}
                         <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-black/20"></div>
                         <div className="absolute inset-0 bg-halftone opacity-20 pointer-events-none"></div>
                     </div>
@@ -61,7 +60,7 @@ const Home = () => {
                     <footer className="relative z-20 border-t-4 border-black bg-[var(--color-neon-red)] py-6 text-center text-black font-black italic text-lg clip-comic">
                         <div className="absolute inset-0 bg-halftone opacity-20"></div>
                         <p className="relative z-10 text-shadow-comic text-white">
-                            © 2026 BLOG VERSE // ACROSS THE SPIDER-NET
+                            © 2026 BLOG VERSE // Made by <a href="https://dihruv.me" target="_blank" rel="noopener noreferrer" className="text-black transition-colors cursor-pointer">Dhruv</a>  
                         </p>
                     </footer>
                 </div>

@@ -13,6 +13,7 @@ const Dashboard = lazy(() => import('./pages/admin/Dashboard.jsx'))
 const Bloglist = lazy(() => import('./pages/admin/Bloglist.jsx'))
 const Comments = lazy(() => import('./pages/admin/Comments.jsx'))
 const Addblog = lazy(() => import('./pages/admin/Addblog.jsx'))
+
 // Components
 import Login from './components/admin/Login.jsx' // Keep login eager for faster First Contentful Paint if possible, or lazy it too.
 import SmoothScroll from './components/effects/SmoothScroll.jsx'

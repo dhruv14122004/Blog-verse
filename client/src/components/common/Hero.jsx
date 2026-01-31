@@ -6,20 +6,15 @@ const Hero = () => {
     const { input, setInput, blog } = useAppContext();
     return (
         <div className="relative text-center py-24 mb-12 perspective-1000 flex flex-col items-center">
-            <motion.div
+            {/* <motion.div
                 initial={{ scale: 0.8, rotateX: 20 }}
                 animate={{ scale: 1, rotateX: 0 }}
                 transition={{ duration: 1, type: "spring" }}
                 className="relative group mb-8"
             >
-                {/* Main Heading Layer - Single Color Style */}
-                <h1 className="text-6xl md:text-9xl font-black italic tracking-tighter text-white relative z-10 filter drop-shadow-[8px_8px_0px_var(--color-neon-red)]">
-                    Welcome to the<br />
-                    <span className="text-[var(--color-neon-red)]" style={{ textShadow: '4px 4px 0px white' }}>BLOGVERSE</span>
-                </h1>
-            </motion.div>
+            </motion.div> */}
 
-            <motion.div
+            {/* <motion.div
                 initial={{ opacity: 0, letterSpacing: '0px' }}
                 animate={{ opacity: 1, letterSpacing: '2px' }}
                 transition={{ delay: 0.5, duration: 1 }}
@@ -28,7 +23,7 @@ const Hero = () => {
                 <span className="text-zinc-400 font-mono text-xs md:text-sm uppercase border border-zinc-700 inline-block px-4 py-2 bg-black/50 backdrop-blur-md">
                     A place for code, chaos, and creativity across dimensions.
                 </span>
-            </motion.div>
+            </motion.div> */}
 
             {/* Search Bar - Comic Style */}
             <motion.div
